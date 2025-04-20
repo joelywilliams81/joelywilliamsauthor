@@ -1,29 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-        }
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Joely Williams</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f9f5f1;
+      color: #4b3b2d;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #e0cfc2;
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 2px solid #d3bfae;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
+
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      background-color: #967b5d;
+      color: white;
+      padding: 8px 16px;
+      margin: 0 10px;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #7b624a;
+    }
+
+    .content {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1em;
+      border: 1px solid #c0a98d;
+      border-radius: 4px;
+      background-color: #fffdfc;
+    }
+
+    button {
+      background-color: #4b3b2d;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3a2f24;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      background-color: #f0e6dd;
+      margin-top: 40px;
+      color: #6b5848;
+    }
+  </style>
 </head>
 <body>
+
+  <header>
     <h1>Contact Me</h1>
-    <div class="content">
-        <p>If you’d like to reach out, feel free to email me at: joely.williams.writes@gmail.com</p>
-    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="book.html">Book</a>
+    <a href="contact.html">Contact</a>
+    <a href="socials.html">Social Media</a>
+  </nav>
+
+  <div class="content">
+    <p>Feel free to reach out for readings, collaborations, or just to say hello!</p>
+    <form action="mailto:your@email.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <textarea name="message" placeholder="Your message..." rows="6" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Joely Williams. All rights reserved.
+  </footer>
+
 </body>
 </html>
