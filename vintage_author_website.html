@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joely Williams | Author & Poet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fdfaf5;
+      font-family: 'Special Elite', monospace;
+      color: #4b3e2e;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 850px;
+      background-color: #fff;
+      border: 2px solid #d6c7b0;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 50px;
+    }
+
+    header {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 20px;
+      background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      padding: 15px 0;
+      border-bottom: 2px dotted #bfa886;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      text-align: center;
+      color: #5a4e3a;
+    }
+
+    form {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="email"], textarea {
+      width: 80%;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 1em;
+      border: 1px solid #c7b99c;
+      border-radius: 8px;
+      background-color: #f9f5f0;
+      font-family: 'Special Elite', monospace;
+    }
+
+    input[type="submit"] {
+      background-color: #a67b5b;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 30px;
+      font-size: 1.1em;
+      font-family: 'Special Elite', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #8a6549;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #7a6b55;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>Joely Williams</header>
+    <p>Poet, author, and creative force for healing and truth. Thank you for stopping by. If you would like to connect, feel free to send a message below.</p>
+
+    <form action="https://formspree.io/f/your-email" method="POST">
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <input type="submit" value="Send Message">
+    </form>
+
+    <footer>
+      &copy; 2025 Joely Williams. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
