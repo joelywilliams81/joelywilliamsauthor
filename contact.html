@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Joely Williams</title>
+  <title>Contact Me</title>
   <style>
     body {
       font-family: 'Courier New', Courier, monospace;
@@ -46,37 +46,38 @@
     }
 
     .content {
-      max-width: 700px;
+      max-width: 600px;
       margin: 40px auto;
+      text-align: center;
       padding: 20px;
     }
 
-    form {
+    .contact-form {
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
-    input, textarea {
-      margin-bottom: 15px;
+    .contact-form input,
+    .contact-form textarea {
       padding: 10px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1em;
-      border: 1px solid #c0a98d;
-      border-radius: 4px;
-      background-color: #fffdfc;
+      margin: 10px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    button {
+    .contact-form button {
       background-color: #4b3b2d;
       color: white;
-      padding: 10px;
-      border: none;
+      padding: 10px 20px;
       border-radius: 5px;
+      border: none;
       font-size: 1em;
       cursor: pointer;
     }
 
-    button:hover {
+    .contact-form button:hover {
       background-color: #3a2f24;
     }
 
@@ -100,23 +101,3 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="book.html">Book</a>
-    <a href="contact.html">Contact</a>
-    <a href="socials.html">Social Media</a>
-  </nav>
-
-  <div class="content">
-    <p>Feel free to reach out for readings, collaborations, or just to say hello!</p>
-    <form action="mailto:your@email.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <textarea name="message" placeholder="Your message..." rows="6" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </div>
-
-  <footer>
-    &copy; 2025 Joely Williams. All rights reserved.
-  </footer>
-
-</body>
-</html>
