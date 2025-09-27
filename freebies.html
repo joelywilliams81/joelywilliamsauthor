@@ -85,17 +85,15 @@
       Enter your info below to unlock it!
     </p>
 
-  <form action="https://formspree.io/f/xdkwawpp" method="POST">
-      <label for="email">Your Email:</label><br>
-   <input type="email" name="email" placeholder="Your email address" required 
-       style="padding:8px; width:90%; margin:10px 0;">
-      <label for="phone">Your Phone (optional):</label><br>
-      <input type="tel" id="phone" name="phone" style="padding:8px; width:90%; margin:10px 0;"><br>
-
-      <button type="submit" style="background-color:#967b5d; color:white; padding:10px 20px; border:none; border-radius:5px;">
-        Get Access
-      </button>
-    </form>
+ <form action="https://formspree.io/f/xdkwawpp" method="POST">
+  <input type="email" name="email" placeholder="Your email address" required 
+         style="padding:8px; width:90%; margin:10px 0;">
+  <!-- Redirect straight to your flipbook after success -->
+  <input type="hidden" name="_next" value="https://publuu.com/flip-book/977262/2148367">
+  <button type="submit" style="padding:10px 20px; background:#967b5d; color:white; border:none; border-radius:5px; cursor:pointer;">
+    Get the Free Flipbook
+  </button>
+</form>
 
     <p style="margin-top:20px; font-size:0.9em;">
        Click here to open the free flip book:  
