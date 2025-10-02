@@ -1,128 +1,110 @@
-<!-- Freebies Carousel -->
-<div class="carousel-container">
-  <div class="carousel">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Freebies | Joely Williams</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #f9f5f1;
+      color: #4b3b2d;
+      margin: 0;
+      padding: 0;
+    }
 
-    <!-- Freebie 1 -->
-    <div class="carousel-item">
-      <h2>📰 Carry These Lines Vol. 1</h2>
-      <p>My first newsletter flipbook — interactive poems, cards, and creative pages.</p>
-      <a href="https://publuu.com/flip-book/977262/2148367" target="_blank" class="btn">Open Flipbook</a>
-    </div>
+    header {
+      background-color: #e0cfc2;
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 2px solid #d3bfae;
+    }
 
-    <!-- Freebie 2 -->
-    <div class="carousel-item">
-      <h2>📖 Book Excerpt</h2>
-      <p>Read the first chapter of <em>Put the Phone Down, We Have a Job to Do</em>.</p>
-      <a href="https://publuu.com/flip-book/977262/2150037" target="_blank" class="btn">Read Excerpt</a>
-    </div>
+    h1 {
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
 
-    <!-- Freebie 3 -->
-    <div class="carousel-item">
-      <h2>✍️ October 2025 Mini Workshop</h2>
-      <p>A workshop booklet with underground poetry forms, prompts, and space to create.</p>
-      <a href="assets/freebies/oct-2025-mini-workshop.pdf" target="_blank" class="btn">Download PDF</a>
-    </div>
+    nav {
+      text-align: center;
+      margin: 20px 0;
+    }
 
+    nav a {
+      text-decoration: none;
+      background-color: #967b5d;
+      color: white;
+      padding: 8px 16px;
+      margin: 0 10px;
+      border-radius: 5px;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #7b624a;
+    }
+
+    .content {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: left;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      background-color: #f0e6dd;
+      margin-top: 40px;
+      color: #6b5848;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Free Flip Book Poems Magazine</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="book.html">Book</a>
+    <a href="contact.html">Contact</a>
+    <a href="socials.html">Social Media</a>
+    <a href="published.html">Published Work</a>
+    <a href="poems.html">Poems</a>
+    <a href="freebies.html">Freebies</a>
+  </nav>
+
+  <div class="content">
+    <p>
+      I’ve created an interactive flip book filled with poems, cards, a to-do list, and a “create” space for your own art or writing. 
+      Enter your info below to unlock it!
+    </p>
+
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <label for="email">Your Email:</label><br>
+      <input type="email" id="email" name="email" required style="padding:8px; width:90%; margin:10px 0;"><br>
+
+      <label for="phone">Your Phone (optional):</label><br>
+      <input type="tel" id="phone" name="phone" style="padding:8px; width:90%; margin:10px 0;"><br>
+
+      <button type="submit" style="background-color:#967b5d; color:white; padding:10px 20px; border:none; border-radius:5px;">
+        Get Access
+      </button>
+    </form>
+
+    <p style="margin-top:20px; font-size:0.9em;">
+      Already subscribed? Click here to open the free flip book:  
+      <a href="https://publuu.com/flip-book/977262/2148367" target="_blank">Open Flip Book</a>
+    </p>
   </div>
-  <!-- Controls -->
-  <button class="prev">❮</button>
-  <button class="next">❯</button>
-</div>
 
-<style>
-/* Match site theme */
-.carousel-container {
-  position: relative;
-  max-width: 700px;
-  margin: 40px auto;
-  overflow: hidden;
-  border: 1px solid #d3bfae;
-  background: #f9f5f1; /* same cream background */
-  border-radius: 8px;
-}
-
-.carousel {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-}
-
-.carousel-item {
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 30px;
-  text-align: center;
-  font-family: 'Courier New', Courier, monospace; /* same font */
-  color: #4b3b2d;
-}
-
-.carousel-item h2 {
-  margin-bottom: 10px;
-  font-size: 1.4em;
-  color: #4b3b2d;
-}
-
-.carousel-item p {
-  margin-bottom: 15px;
-  font-size: 1em;
-  line-height: 1.5;
-}
-
-.btn {
-  display: inline-block;
-  background-color: #967b5d;
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 1em;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: #7b624a;
-}
-
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #967b5d;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 1.2em;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-</style>
-
-<script>
-const carousel = document.querySelector('.carousel');
-const items = document.querySelectorAll('.carousel-item');
-let index = 0;
-
-document.querySelector('.next').addEventListener('click', () => {
-  index = (index + 1) % items.length;
-  carousel.style.transform = `translateX(-${index * 100}%)`;
-});
-
-document.querySelector('.prev').addEventListener('click', () => {
-  index = (index - 1 + items.length) % items.length;
-  carousel.style.transform = `translateX(-${index * 100}%)`;
-});
-</script>
-
-<!-- Optional Email Form -->
-<div class="freebie-form" style="text-align:center; margin-top:30px;">
-  <p>✨ Want more workshops, poems, and freebies as they drop? Enter your email below.</p>
-  <form action="https://formspree.io/f/xdkwawpp" method="POST">
-    <input type="email" name="email" placeholder="Your email" style="padding:8px; width:60%; border:1px solid #d3bfae; border-radius:4px;">
-    <button type="submit" style="padding:10px 20px; background:#967b5d; color:white; border:none; border-radius:5px;">Notify Me</button>
-  </form>
-</div>
+  <footer>
+    &copy; 2025 Joely Williams. All rights reserved.
   </footer>
 
 </body>
