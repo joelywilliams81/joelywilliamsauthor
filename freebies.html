@@ -7,6 +7,111 @@
 
   <!-- keep using your existing stylesheet -->
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      background: #faf4ef;
+      color: #3f2c25;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      max-width: 1100px;
+    }
+
+    .site-header,
+    .site-footer {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      background: #f9f0ea;
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .site-nav a {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(164, 109, 77, 0.3);
+      text-decoration: none;
+      color: #7a5036;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding: 3rem 1.5rem;
+    }
+
+    .page-intro,
+    .content-section {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 20px;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .resource-preview {
+      width: 100%;
+      border: 1px solid rgba(164, 109, 77, 0.3);
+      border-radius: 16px;
+      min-height: 360px;
+      background: #fff;
+    }
+
+    .resource-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .resource-tip {
+      font-size: 0.95rem;
+      color: #7a5036;
+      background: rgba(164, 109, 77, 0.08);
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+    }
+
+    .two-column {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .two-column {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
   <!-- simple, safe defaults if styles.css is missing a few classes -->
   <style>
@@ -62,6 +167,25 @@
         <div class="feature-grid">
           <!-- Card 1 -->
           <article class="resource-card">
+            <div>
+              <h2>Carry These Lines Vol. 1</h2>
+              <p>
+                A newsletter-style zine filled with Joely&apos;s poems, creative pages, and
+                reflections to spark your own storytelling practice.
+              </p>
+            </div>
+            <iframe
+              class="resource-preview"
+              src="Assets/carry-these-lines-v1.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Carry These Lines Vol. 1 preview"
+              loading="lazy"
+              height="680"
+            ></iframe>
+            <div class="resource-actions">
+              <a class="button-primary" href="Assets/carry-these-lines-v1.pdf" target="_blank" rel="noopener">
+                Download the PDF
+              </a>
+            </div>
             <h2>Carry These Lines — Vol. 1</h2>
             <p>A newsletter-style zine with poems, creative pages, and reflections to spark your own storytelling practice.</p>
             <p>
@@ -74,6 +198,25 @@
 
           <!-- Card 2 -->
           <article class="resource-card">
+            <div>
+              <h2>FLOW &mdash; Workbook Excerpt</h2>
+              <p>
+                A preview chapter from <em>Put the Phone Down, We Have a Job to Do</em>
+                highlighting grounding practices, prompts, and teaching notes.
+              </p>
+            </div>
+            <iframe
+              class="resource-preview"
+              src="Assets/flow-excerpt.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="FLOW workbook excerpt preview"
+              loading="lazy"
+              height="680"
+            ></iframe>
+            <div class="resource-actions">
+              <a class="button-primary" href="Assets/flow-excerpt.pdf" target="_blank" rel="noopener">
+                Download the PDF
+              </a>
+            </div>
             <h2>FLOW — Workbook Excerpt</h2>
             <p>A preview chapter from <em>Put the Phone Down, We Have a Job to Do</em> with grounding prompts and gentle practice.</p>
             <p>
@@ -86,6 +229,29 @@
 
           <!-- Card 3 -->
           <article class="resource-card">
+            <div>
+              <h2>Underground Forms Workshop</h2>
+              <p>
+                A mini workshop booklet featuring underground poetry forms, prompts,
+                and facilitation tips from Joely&apos;s October 2025 gathering.
+              </p>
+            </div>
+            <iframe
+              class="resource-preview"
+              src="Assets/oct-2025-mini-workshop.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Underground Forms workshop booklet preview"
+              loading="lazy"
+              height="680"
+            ></iframe>
+            <div class="resource-actions">
+              <a class="button-primary" href="Assets/oct-2025-mini-workshop.pdf" target="_blank" rel="noopener">
+                Download the PDF
+              </a>
+            </div>
+            <p class="resource-tip">
+              Print the booklet double-sided on the short edge so each spread aligns for
+              quick folding and sharing during the workshop.
+            </p>
             <h2>Underground Forms — Mini Workshop</h2>
             <p>A compact workshop booklet with underground poetry forms, prompts, and exercises first shared in Oct. 2025.</p>
             <p>
@@ -102,6 +268,22 @@
         <div class="two-column">
           <div>
             <h2>How to use these</h2>
+            <p>
+              Layer the downloads into your rituals: read a poem aloud to open your
+              journaling hour, incorporate the FLOW prompts into classroom circles, or
+              adapt the workshop plan to co-create with your community. Highlight what
+              resonates, add your own notes in the margins, and let the pages travel
+              with you from space to space.
+            </p>
+          </div>
+          <div>
+            <h2>Share the love</h2>
+            <p>
+              Let Joely know how the resources land. Send a quick note, tag
+              <a href="socials.html">@joelywilliams</a> on social media, or pass the
+              link along to a friend who&apos;d appreciate the work. Your reflections help
+              shape future offerings and keep the resource library rooted in care.
+            </p>
             <p>Bring them into living room circles, classrooms, or one-on-one sessions. Print a few pages, or share the link with a friend who needs it.</p>
           </div>
           <div>
