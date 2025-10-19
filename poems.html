@@ -4,85 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Poems | Joely Williams</title>
-  <style>
-    body {
-      font-family: 'Courier New', Courier, monospace;
-      background-color: #f9f5f1;
-      color: #4b3b2d;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #e0cfc2;
-      padding: 30px 20px;
-      text-align: center;
-      border-bottom: 2px solid #d3bfae;
-    }
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 5px;
-    }
-    nav {
-      text-align: center;
-      margin: 20px 0;
-    }
-    nav a {
-      text-decoration: none;
-      background-color: #967b5d;
-      color: white;
-      padding: 8px 16px;
-      margin: 0 10px;
-      border-radius: 5px;
-      font-size: 1em;
-      transition: background-color 0.3s;
-    }
-    nav a:hover {
-      background-color: #7b624a;
-    }
-    .content {
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 20px;
-      text-align: left;
-    }
-    pre {
-      white-space: pre-wrap;
-      background: #fdf8f4;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 40px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      background-color: #f0e6dd;
-      margin-top: 40px;
-      color: #6b5848;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="page-wrapper">
+    <header class="site-header">
+      <a class="brand-link" href="index.html">
+        <span class="brand-name">Joely Williams</span>
+        <span class="brand-tagline">Author • Poet • Community Builder</span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="book.html">Book</a>
+        <a href="custom-poetry.html">Custom Poetry</a>
+        <a href="poems.html">Poems</a>
+        <a href="published.html">Published Work</a>
+        <a href="freebies.html">Freebies</a>
+        <a href="contact.html">Contact</a>
+        <a href="socials.html">Social Media</a>
+      </nav>
+    </header>
 
-  <header>
-    <h1>Joely Williams</h1>
-    <p>Author & Storyteller</p>
-  </header>
+    <main>
+      <section class="page-intro">
+        <h1>Poems</h1>
+        <p>
+          A selection of pieces that hold memory, ritual, and everyday holiness. Take
+          your time and linger inside the language.
+        </p>
+      </section>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="book.html">Book</a>
-    <a href="contact.html">Contact</a>
-    <a href="socials.html">Social Media</a>
-    <a href="published.html">Published Work</a>
-    <a href="poems.html">Poems</a>
-    <a href="freebies.html">Freebies</a>
-  </nav>
-
-  <div class="content">
-    <h2>Inventory</h2>
-    <pre>Some things I’ve wrapped in bubble,
+      <section class="content-section">
+        <article class="poem-card">
+          <h2>Inventory</h2>
+          <pre class="poem-text">Some things I’ve wrapped in bubble,
 
 Boxed and marked Handle With Care-
 Like the letter my brother mailed me
@@ -140,9 +98,11 @@ A night light shaped like a moon.
 Even storage has weight.
 Even forgetting
 has fees.</pre>
+        </article>
 
-    <h2>The Brief Theater of Passing Cars</h2>
-    <pre>We drive past one another-
+        <article class="poem-card">
+          <h2>The Brief Theater of Passing Cars</h2>
+          <pre class="poem-text">We drive past one another-
 strangers,
 each holding a scene
 just long enough to dissolve it.
@@ -182,9 +142,11 @@ I find God here sometimes-
 in the gum wrappers,
 the dashboard rosaries,
 the sticker that says, Still Here.</pre>
+        </article>
 
-    <h2>The Journals I Never Got to Keep</h2>
-    <pre>One was pink with gold locks-
+        <article class="poem-card">
+          <h2>The Journals I Never Got to Keep</h2>
+          <pre class="poem-text">One was pink with gold locks-
 confiscated by a cousin
 who laughed too loud at my poems.
 
@@ -217,9 +179,11 @@ The woman who learned to scream
 onto paper.
 
 I grieve them like people.</pre>
+        </article>
 
-    <h2>After the Crash in the Hudson</h2>
-    <pre>What floats up is never just wreckage.
+        <article class="poem-card">
+          <h2>After the Crash in the Hudson</h2>
+          <pre class="poem-text">What floats up is never just wreckage.
 It is tariff and treaty,
 torn passport and waterlogged hope.
 
@@ -247,9 +211,11 @@ Float promises
 on waves of silence.
 What sinks
 is always someone else.</pre>
+        </article>
 
-    <h2>Tea Like an Embrace</h2>
-    <pre>Boil.
+        <article class="poem-card">
+          <h2>Tea Like an Embrace</h2>
+          <pre class="poem-text">Boil.
 Pour.
 Steep.
 
@@ -318,11 +284,13 @@ in sips.
 
 Even in Styrofoam…
 it feels holy.</pre>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      &copy; 2025 Joely Williams. All rights reserved.
+    </footer>
   </div>
-
-  <footer>
-    &copy; 2025 Joely Williams. All rights reserved.
-  </footer>
-
 </body>
 </html>
