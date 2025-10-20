@@ -77,6 +77,26 @@
     .resource-card {
       display: flex;
       flex-direction: column;
+      gap: 1rem;
+    }
+
+    .resource-card a {
+      align-self: flex-start;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(164, 109, 77, 0.35);
+      background: #f9f0ea;
+      color: #7a5036;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .resource-card a:hover,
+    .resource-card a:focus {
+      background: #7a5036;
+      color: #fff;
       gap: 1.25rem;
     }
 
@@ -100,6 +120,7 @@
       background: rgba(164, 109, 77, 0.08);
       padding: 0.75rem 1rem;
       border-radius: 12px;
+      margin-top: 0.5rem;
     }
 
     .two-column {
@@ -191,6 +212,7 @@
             <p>
               <a class="btn" href="https://anyflip.com/xwoto/agtt/" target="_blank" rel="noopener">Read now →</a>
             </p>
+            <a href="Assets/carry-these-lines-v1.pdf" target="_blank" rel="noopener">Open the PDF →</a>
             <iframe class="viewer"
               src="https://anyflip.com/xwoto/agtt/"
               title="Carry These Lines — Vol. 1 (flipbook)" loading="lazy" allowfullscreen></iframe>
@@ -256,6 +278,11 @@
             <p>A compact workshop booklet with underground poetry forms, prompts, and exercises first shared in Oct. 2025.</p>
             <p>
               <a class="btn" href="https://anyflip.com/xwoto/ywls/" target="_blank" rel="noopener">Read now →</a>
+            </p>
+            <a href="Assets/oct-2025-mini-workshop.pdf" target="_blank" rel="noopener">Open the PDF →</a>
+            <p class="resource-tip">
+              Print the booklet double-sided on the short edge so each spread aligns for
+              quick folding and sharing during the workshop.
             </p>
             <iframe class="viewer"
               src="https://anyflip.com/xwoto/ywls/"
