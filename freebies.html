@@ -7,6 +7,242 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #faf4ef;
+      --surface: #fffdf9;
+      --surface-elevated: rgba(255, 255, 255, 0.85);
+      --primary: #a46d4d;
+      --primary-dark: #7a5036;
+      --text: #3f2c25;
+      --muted: #856855;
+      --shadow: 0 20px 45px rgba(63, 44, 37, 0.08);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #fefbf7 0%, var(--background) 100%);
+      color: var(--text);
+      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+      line-height: 1.7;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.72), transparent),
+        linear-gradient(135deg, #f4e5db 0%, #f9f0ea 100%);
+      border-bottom: 1px solid rgba(164, 109, 77, 0.15);
+      box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .brand-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: clamp(2.1rem, 4.5vw, 3rem);
+      letter-spacing: 0.06em;
+    }
+
+    .brand-tagline {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.4em;
+      color: var(--muted);
+    }
+
+    .site-nav {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .site-nav a {
+      text-decoration: none;
+      color: var(--primary-dark);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.65rem 1.2rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(164, 109, 77, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 18px rgba(164, 109, 77, 0.25);
+    }
+
+    main {
+      flex: 1;
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .page-intro {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(244, 222, 206, 0.95));
+      border-radius: 28px;
+      padding: clamp(2.5rem, 5vw, 4rem);
+      text-align: center;
+      position: relative;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .page-intro::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.6), transparent 55%),
+        radial-gradient(circle at 80% 30%, rgba(255, 225, 205, 0.45), transparent 60%);
+      mix-blend-mode: soft-light;
+    }
+
+    .page-intro h1 {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .page-intro p {
+      max-width: 55ch;
+      margin: 0 auto;
+      font-size: 1.12rem;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .content-section {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: clamp(2rem, 4vw, 3rem);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 960px) {
+      .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .resource-card h2 {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .resource-card p {
+      margin: 0;
+    }
+
+    .button-primary {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      box-shadow: 0 18px 26px rgba(164, 109, 77, 0.3);
+    }
+
+    .button-primary:hover,
+    .button-primary:focus {
+      transform: translateY(-2px);
+      background: var(--primary-dark);
+    }
+
+    .resource-preview {
+      width: 100%;
+      height: 680px;
+      border: none;
+      border-radius: 18px;
+      background: var(--surface-elevated);
+      box-shadow: inset 0 0 0 1px rgba(164, 109, 77, 0.12);
+    }
+
+    @media (max-width: 600px) {
+      .resource-preview {
+        height: 520px;
+      }
+    }
+
+    .resource-tip {
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+      background: rgba(164, 109, 77, 0.08);
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+    }
+
+    .two-column {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .two-column {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .two-column h2 {
+      font-family: 'Playfair Display', 'Times New Roman', serif;
+      font-size: 1.6rem;
+      margin-top: 0;
+    }
+
+    .site-footer {
+      text-align: center;
+      padding: 2.25rem 1.5rem;
+      background: #f9f0ea;
+      color: var(--muted);
+      border-top: 1px solid rgba(164, 109, 77, 0.15);
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -32,8 +268,9 @@
       <section class="page-intro">
         <h1>Free resources for your creative rituals</h1>
         <p>
-          Download readings, prompts, and workshop materials to support your healing
-          work, writing practice, and community gatherings.
+          Immerse yourself in poems, prompts, and workshop guides that nurture
+          healing-centered storytelling. Download, share, and bring these pieces
+          into your next gathering.
         </p>
       </section>
 
@@ -42,28 +279,59 @@
           <article class="resource-card">
             <h2>Carry These Lines Vol. 1</h2>
             <p>
-              A newsletter-style zine with poems, creative pages, and reflections to
-              spark your own storytelling practice.
+              A newsletter-style zine with original poems, creative journaling
+              pages, and reflections to spark your own storytelling practice.
             </p>
-            <a href="Assets/carry-these-lines-v1.pdf" target="_blank" rel="noopener"target="_blank" rel="noopener">Open the PDF →</a>
+            <a class="button-primary" href="https://anyflip.com/xwoto/agtt/" target="_blank" rel="noopener">
+              Read the flipbook →
+            </a>
+            <iframe
+              class="resource-preview"
+              src="https://online.anyflip.com/xwoto/agtt/"
+              title="Carry These Lines Vol. 1 flipbook preview"
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
           </article>
 
           <article class="resource-card">
-            <h2>FLOW &mdash; Workbook Excerpt</h2>
+            <h2>FLOW — Workbook Excerpt</h2>
             <p>
               A preview chapter from <em>Put the Phone Down, We Have a Job to Do</em>
-              featuring guided prompts and grounding practices.
+              featuring grounding practices, guided prompts, and gentle check-ins.
             </p>
-            <a href="Assets/flow-excerpt.pdf" target="_blank" rel="noopener">Open the PDF →</a>
+            <a class="button-primary" href="https://anyflip.com/xwoto/zmwh/" target="_blank" rel="noopener">
+              Read the flipbook →
+            </a>
+            <iframe
+              class="resource-preview"
+              src="https://online.anyflip.com/xwoto/zmwh/"
+              title="FLOW workbook excerpt flipbook preview"
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
           </article>
 
           <article class="resource-card">
             <h2>Underground Forms Workshop</h2>
             <p>
               A mini workshop booklet with underground poetry forms, prompts, and
-              creative exercises first shared in October 2025.
+              creative exercises to keep your circles inspired all season long.
             </p>
-            <a href="Assets/oct-2025-mini-workshop.pdf" target="_blank" rel="noopener">Open the PDF →</a>
+            <a class="button-primary" href="https://anyflip.com/xwoto/ywls/" target="_blank" rel="noopener">
+              Read the flipbook →
+            </a>
+            <iframe
+              class="resource-preview"
+              src="https://online.anyflip.com/xwoto/ywls/"
+              title="Underground Forms workshop booklet preview"
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
+            <p class="resource-tip">
+              Tip: Print the booklet double-sided on the short edge so each spread
+              aligns for easy folding and sharing with your group.
+            </p>
           </article>
         </div>
       </section>
@@ -71,19 +339,20 @@
       <section class="content-section">
         <div class="two-column">
           <div>
-            <h2>How to use these resources</h2>
+            <h2>How to use these</h2>
             <p>
-              Bring them into your living room circles, classrooms, or one-on-one
-              sessions. Print a few copies for friends, or use the prompts as a
-              jumping-off point for your own writing practice.
+              Set the mood with music, light, or breathwork, then journey through a
+              few pages together. Invite participants to journal between sections,
+              voice what resonates, and note any prompts to revisit later.
             </p>
           </div>
           <div>
             <h2>Share the love</h2>
             <p>
-              If the resources support your work, tag Joely on
-              <a href="socials.html">social media</a> or send a note about how you
-              used them. Your stories help shape future offerings.
+              Let Joely know how the resources land—send a note, tag
+              <a href="socials.html">on social media</a>, or forward the link to a
+              friend who could use a creative boost. Your stories shape future
+              offerings.
             </p>
           </div>
         </div>
