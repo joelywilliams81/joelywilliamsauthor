@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Freebies | Joely Williams</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- keep using your existing stylesheet -->
   <link rel="stylesheet" href="styles.css" />
   <style>
     body {
@@ -97,6 +97,21 @@
     .resource-card a:focus {
       background: #7a5036;
       color: #fff;
+      gap: 1.25rem;
+    }
+
+    .resource-preview {
+      width: 100%;
+      border: 1px solid rgba(164, 109, 77, 0.3);
+      border-radius: 16px;
+      min-height: 360px;
+      background: #fff;
+    }
+
+    .resource-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .resource-tip {
@@ -118,10 +133,32 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
+  <!-- simple, safe defaults if styles.css is missing a few classes -->
+  <style>
+    /* only used if your styles.css doesn't define these */
+    .page-wrapper { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+    .site-header { display:flex; align-items:center; justify-content:space-between; padding:18px 0; border-bottom:1px solid #e9e6e1; }
+    .brand-link { text-decoration:none; color:inherit; }
+    .brand-name { display:block; font-weight:700; font-size:1.2rem; }
+    .brand-tagline { font-size:0.9rem; opacity:.8; }
+    .site-nav a { margin:0 8px; text-decoration:none; }
+    .page-intro { padding:28px 0 10px; }
+    .content-section { padding:18px 0 30px; }
+    .feature-grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
+    .resource-card { border:1px solid #eee; border-radius:10px; padding:16px; background:#fff; }
+    .btn { display:inline-block; padding:10px 14px; border-radius:8px; border:1px solid #d6cfc7; text-decoration:none; }
+    .viewer { margin-top:12px; border:none; width:100%; height:680px; }
+    .note { font-size:0.9rem; opacity:.8; }
+    .two-column { display:grid; gap:18px; grid-template-columns:1fr 1fr; }
+    @media (max-width: 820px) { .two-column { grid-template-columns:1fr; } }
+    .site-footer { border-top:1px solid #e9e6e1; padding:24px 0; text-align:center; font-size:.9rem; opacity:.9; }
   </style>
 </head>
+
 <body>
   <div class="page-wrapper">
+    <!-- Header / Nav (kept consistent with your other pages) -->
     <header class="site-header">
       <a class="brand-link" href="index.html">
         <span class="brand-name">Joely Williams</span>
@@ -143,43 +180,113 @@
     <main>
       <section class="page-intro">
         <h1>Free resources for your creative rituals</h1>
-        <p>
-          Download readings, prompts, and workshop materials to support your healing
-          work, writing practice, and community gatherings.
-        </p>
+        <p>Poems, mini-workshops, and workbook excerpts—free to read, share, and print for your circles and classrooms.</p>
+        <p class="note">Tip: each card has a “Read now” button (opens a flip-book) and an embedded preview below it.</p>
       </section>
 
       <section class="content-section">
         <div class="feature-grid">
+          <!-- Card 1 -->
           <article class="resource-card">
-            <h2>Carry These Lines Vol. 1</h2>
+            <div>
+              <h2>Carry These Lines Vol. 1</h2>
+              <p>
+                A newsletter-style zine filled with Joely&apos;s poems, creative pages, and
+                reflections to spark your own storytelling practice.
+              </p>
+            </div>
+            <iframe
+              class="resource-preview"
+              src="Assets/carry-these-lines-v1.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Carry These Lines Vol. 1 preview"
+              loading="lazy"
+              height="680"
+            ></iframe>
+            <div class="resource-actions">
+              <a class="button-primary" href="Assets/carry-these-lines-v1.pdf" target="_blank" rel="noopener">
+                Download the PDF
+              </a>
+            </div>
+            <h2>Carry These Lines — Vol. 1</h2>
+            <p>A newsletter-style zine with poems, creative pages, and reflections to spark your own storytelling practice.</p>
             <p>
-              A newsletter-style zine with poems, creative pages, and reflections to
-              spark your own storytelling practice.
+              <a class="btn" href="https://anyflip.com/xwoto/agtt/" target="_blank" rel="noopener">Read now →</a>
             </p>
             <a href="Assets/carry-these-lines-v1.pdf" target="_blank" rel="noopener">Open the PDF →</a>
+            <iframe class="viewer"
+              src="https://anyflip.com/xwoto/agtt/"
+              title="Carry These Lines — Vol. 1 (flipbook)" loading="lazy" allowfullscreen></iframe>
           </article>
 
+          <!-- Card 2 -->
           <article class="resource-card">
-            <h2>FLOW &mdash; Workbook Excerpt</h2>
+            <div>
+              <h2>FLOW &mdash; Workbook Excerpt</h2>
+              <p>
+                A preview chapter from <em>Put the Phone Down, We Have a Job to Do</em>
+                highlighting grounding practices, prompts, and teaching notes.
+              </p>
+            </div>
+            <iframe
+              class="resource-preview"
+              src="Assets/flow-excerpt.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="FLOW workbook excerpt preview"
+              loading="lazy"
+              height="680"
+            ></iframe>
+            <div class="resource-actions">
+              <a class="button-primary" href="Assets/flow-excerpt.pdf" target="_blank" rel="noopener">
+                Download the PDF
+              </a>
+            </div>
+            <h2>FLOW — Workbook Excerpt</h2>
+            <p>A preview chapter from <em>Put the Phone Down, We Have a Job to Do</em> with grounding prompts and gentle practice.</p>
             <p>
-              A preview chapter from <em>Put the Phone Down, We Have a Job to Do</em>
-              featuring guided prompts and grounding practices.
+              <a class="btn" href="https://anyflip.com/xwoto/zmwh/" target="_blank" rel="noopener">Read now →</a>
             </p>
-            <a href="Assets/flow-excerpt.pdf" target="_blank" rel="noopener">Open the PDF →</a>
+            <iframe class="viewer"
+              src="https://anyflip.com/xwoto/zmwh/"
+              title="FLOW — Workbook Excerpt (flipbook)" loading="lazy" allowfullscreen></iframe>
           </article>
 
+          <!-- Card 3 -->
           <article class="resource-card">
-            <h2>Underground Forms Workshop</h2>
+            <div>
+              <h2>Underground Forms Workshop</h2>
+              <p>
+                A mini workshop booklet featuring underground poetry forms, prompts,
+                and facilitation tips from Joely&apos;s October 2025 gathering.
+              </p>
+            </div>
+            <iframe
+              class="resource-preview"
+              src="Assets/oct-2025-mini-workshop.pdf#toolbar=0&navpanes=0&scrollbar=0"
+              title="Underground Forms workshop booklet preview"
+              loading="lazy"
+              height="680"
+            ></iframe>
+            <div class="resource-actions">
+              <a class="button-primary" href="Assets/oct-2025-mini-workshop.pdf" target="_blank" rel="noopener">
+                Download the PDF
+              </a>
+            </div>
+            <p class="resource-tip">
+              Print the booklet double-sided on the short edge so each spread aligns for
+              quick folding and sharing during the workshop.
+            </p>
+            <h2>Underground Forms — Mini Workshop</h2>
+            <p>A compact workshop booklet with underground poetry forms, prompts, and exercises first shared in Oct. 2025.</p>
             <p>
-              A mini workshop booklet with underground poetry forms, prompts, and
-              creative exercises first shared in October 2025.
+              <a class="btn" href="https://anyflip.com/xwoto/ywls/" target="_blank" rel="noopener">Read now →</a>
             </p>
             <a href="Assets/oct-2025-mini-workshop.pdf" target="_blank" rel="noopener">Open the PDF →</a>
             <p class="resource-tip">
               Print the booklet double-sided on the short edge so each spread aligns for
               quick folding and sharing during the workshop.
             </p>
+            <iframe class="viewer"
+              src="https://anyflip.com/xwoto/ywls/"
+              title="Underground Forms — Mini Workshop (flipbook)" loading="lazy" allowfullscreen></iframe>
           </article>
         </div>
       </section>
@@ -187,20 +294,28 @@
       <section class="content-section">
         <div class="two-column">
           <div>
-            <h2>How to use these resources</h2>
+            <h2>How to use these</h2>
             <p>
-              Bring them into your living room circles, classrooms, or one-on-one
-              sessions. Print a few copies for friends, or use the prompts as a
-              jumping-off point for your own writing practice.
+              Layer the downloads into your rituals: read a poem aloud to open your
+              journaling hour, incorporate the FLOW prompts into classroom circles, or
+              adapt the workshop plan to co-create with your community. Highlight what
+              resonates, add your own notes in the margins, and let the pages travel
+              with you from space to space.
             </p>
           </div>
           <div>
             <h2>Share the love</h2>
             <p>
-              If the resources support your work, tag Joely on
-              <a href="socials.html">social media</a> or send a note about how you
-              used them. Your stories help shape future offerings.
+              Let Joely know how the resources land. Send a quick note, tag
+              <a href="socials.html">@joelywilliams</a> on social media, or pass the
+              link along to a friend who&apos;d appreciate the work. Your reflections help
+              shape future offerings and keep the resource library rooted in care.
             </p>
+            <p>Bring them into living room circles, classrooms, or one-on-one sessions. Print a few pages, or share the link with a friend who needs it.</p>
+          </div>
+          <div>
+            <h2>Share the love</h2>
+            <p>If these support your work, tag <a href="socials.html">@poems_neverdie</a> or send a note about how you used them—your stories shape future offerings.</p>
           </div>
         </div>
       </section>
