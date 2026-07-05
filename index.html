@@ -438,6 +438,188 @@ footer a{color:var(--gold);text-decoration:none;}
 </footer>
 
 <script>
+// PDF GENERATION
+function openPDF(type) {
+  if (type === 'envelope') generateEnvelopePDF();
+  else generateJournalPDF();
+}
+
+function generateEnvelopePDF() {
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html><head><title>Mini Envelope Kit — Joely Williams</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&display=swap');
+  @page { size: letter; margin: .5in; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Special Elite', cursive; background: #fff; color: #1a1410; }
+  .header { text-align:center; border-bottom: 1px solid #839958; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:400; color:#0A3323; margin-bottom:.3rem; }
+  .header p { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:#839958; }
+  .instructions { font-family:'IM Fell English',serif; font-style:italic; font-size:.8rem; color:#5a5040; text-align:center; margin-bottom:1.5rem; line-height:1.7; }
+  .envelope-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+  .envelope-wrap { display:flex; flex-direction:column; align-items:center; }
+  .envelope-label { font-size:.5rem; letter-spacing:.15em; text-transform:uppercase; color:#839958; margin-bottom:.4rem; }
+  /* envelope shape via CSS */
+  .env-shape {
+    width: 240px; height: 160px; position:relative;
+    border: 1px dashed #c9a84c;
+    background: #faf6e8;
+  }
+  /* flap top */
+  .env-shape::before {
+    content:'';position:absolute;top:0;left:0;right:0;
+    height:0;
+    border-left:120px solid transparent;
+    border-right:120px solid transparent;
+    border-top:70px solid #f0e8d0;
+    border-bottom: none;
+  }
+  /* bottom fold line */
+  .env-shape::after {
+    content:'';position:absolute;bottom:40px;left:0;right:0;
+    border-top:1px dashed #c9a84c;
+  }
+  .env-inner { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.3rem; padding-top:2rem; }
+  .env-inner-stamp { width:32px;height:40px;border:1px solid #c9a84c;position:absolute;top:8px;right:10px;display:flex;align-items:center;justify-content:center;font-size:.5rem;color:#c9a84c; }
+  .env-lines { width:120px; }
+  .env-line { border-bottom:1px solid #ccc; margin-bottom:8px; height:12px; }
+  .fold-guide { font-size:.45rem; color:#aaa; letter-spacing:.1em; text-transform:uppercase; margin-top:.5rem; }
+  .side-tabs { display:flex; gap:1rem; margin-top:.4rem; }
+  .tab { width:25px; height:55px; background:#f0e8d0; border:1px dashed #c9a84c; display:flex; align-items:center; justify-content:center; font-size:.4rem; color:#aaa; writing-mode:vertical-rl; letter-spacing:.08em; }
+  .footer { margin-top:2rem; text-align:center; border-top:1px solid #839958; padding-top:1rem; }
+  .footer p { font-size:.55rem; letter-spacing:.15em; color:#839958; text-transform:uppercase; line-height:2; }
+  .btn-print { margin-top:1.5rem; font-family:'Special Elite',cursive; font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; padding:.7rem 1.6rem; background:#0A3323; color:#faf6e8; border:none; cursor:pointer; }
+  @media print { .btn-print { display:none; } }
+</style></head><body>
+<div class="header">
+  <h1>Mini Envelope Kit</h1>
+  <p>Poetry Letter Club · @poems_neverdie · joely williams</p>
+</div>
+<p class="instructions">Print on any paper · Score along dashed lines · Fold side tabs in first · Fold bottom up · Tuck flap to close<br>Perfect for poem cards, handwritten notes, tea bags, and small gifts.</p>
+<div class="envelope-grid">
+  ${[1,2,3,4,5,6].map(n => `
+  <div class="envelope-wrap">
+    <div class="envelope-label">envelope no. ${n}</div>
+    <div class="env-shape">
+      <div class="env-inner">
+        <div class="env-inner-stamp">✦</div>
+        <div class="env-lines">
+          <div class="env-line"></div>
+          <div class="env-line"></div>
+          <div class="env-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="side-tabs">
+      <div class="tab">fold</div>
+      <div style="width:150px;"></div>
+      <div class="tab">fold</div>
+    </div>
+    <div class="fold-guide">↑ fold bottom up to here ↑</div>
+  </div>`).join('')}
+</div>
+<div class="footer">
+  <p>poems never die · joelywilliams81.github.io/joelywilliamsauthor</p>
+  <p>join the poetry letter club · forms.gle/rhkk5opNt3QHMEiN9</p>
+  <button class="btn-print" onclick="window.print()">Print This Page</button>
+</div>
+</body></html>`);
+  w.document.close();
+}
+
+function generateJournalPDF() {
+  const prompts = [
+    { n:'01', title:'The Last Place', body:'Write about the last place you lived that felt like yours. Not the city — the specific spot. The corner, the window, the hour of day the light came in a particular way. What did it know about you that you haven\'t told anyone?' },
+    { n:'02', title:'Something You Carried Out', body:'What did you take with you when you left — not in your bags, but in your body? A habit. A reflex. A way of crossing a street. A word you say that doesn\'t belong to this new place.' },
+    { n:'03', title:'A Person Who Has Since Changed', body:'Think of someone you loved before they became who they are now. Write to the earlier version of them. Don\'t explain what happened. Just write as if they\'re still that person and you still have time.' },
+    { n:'04', title:'What the Algorithm Doesn\'t Know', body:'Your phone knows your silences. It knows your late-night searches. But what does it miss? What\'s the thing you feel that has no search term yet — no category, no blue-light video to explain it?' },
+    { n:'05', title:'The Store, The Street, The Sound', body:'Pick a place from childhood — a store, a block, a kitchen. Describe it using only smells and sounds. No visuals. What do you hear? What does the air smell like? Who is nearby without you seeing them?' },
+    { n:'06', title:'Unfinished Sentence', body:'Start with: "I was going to tell you—" and write for ten minutes without stopping. Don\'t decide who you\'re writing to until you\'re halfway through. Let the sentence find its own ending.' },
+    { n:'07', title:'The Cold as Condition', body:'What in your life right now is not the enemy — just the condition? Something that feels like it\'s against you but is actually the thing keeping you. Write about learning the difference.' },
+    { n:'08', title:'Voice Memo, Unsent', body:'Write the message you almost sent this week. The one you typed and deleted, or thought through in the car, or started saying out loud before you stopped yourself. Write it now. You don\'t have to send it.' }
+  ];
+
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html><head><title>The Slow Letter Journal — Joely Williams</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital@0;1&display=swap');
+  @page { size: letter; margin: .65in; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Libre Baskerville',Georgia,serif; background:#fff; color:#1a1410; }
+  .cover { min-height:9in; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:2px solid #839958; padding:3rem; margin-bottom:2rem; position:relative; page-break-after:always; }
+  .cover::before { content:''; position:absolute; inset:8px; border:1px solid #c9a84c; pointer-events:none; }
+  .cover-pre { font-family:'Special Elite',cursive; font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:#839958; margin-bottom:1.5rem; }
+  .cover-title { font-family:'Playfair Display',serif; font-size:3rem; font-weight:400; color:#0A3323; line-height:1.1; margin-bottom:.5rem; }
+  .cover-title em { font-style:italic; color:#D3968C; }
+  .cover-sub { font-family:'IM Fell English',serif; font-style:italic; font-size:1rem; color:#5a6b4f; margin:1.5rem 0 2.5rem; line-height:1.9; max-width:380px; }
+  .cover-rule { width:80px; height:1px; background:#c9a84c; margin:0 auto 2rem; }
+  .cover-attr { font-family:'Special Elite',cursive; font-size:.58rem; letter-spacing:.18em; color:#839958; line-height:2.2; }
+  .cover-moon { font-size:1.2rem; letter-spacing:8px; color:#c9a84c; opacity:.5; margin:1.5rem 0; }
+  .intro-page { page-break-after:always; padding:1rem 0 3rem; }
+  .intro-page h2 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:400; color:#0A3323; margin-bottom:1rem; }
+  .intro-page p { font-family:'IM Fell English',serif; font-style:italic; font-size:.95rem; line-height:2; color:#3a3028; margin-bottom:1rem; }
+  .prompt-page { page-break-after:always; padding:1rem 0; }
+  .prompt-num { font-family:'Special Elite',cursive; font-size:.55rem; letter-spacing:.25em; color:#839958; margin-bottom:.3rem; }
+  .prompt-title { font-family:'Playfair Display',serif; font-size:1.6rem; font-style:italic; color:#0A3323; margin-bottom:.8rem; border-bottom:1px solid #c9a84c; padding-bottom:.6rem; }
+  .prompt-body { font-family:'IM Fell English',serif; font-style:italic; font-size:.95rem; line-height:2; color:#3a3028; margin-bottom:1.8rem; }
+  .write-lines { margin-top:1rem; }
+  .write-line { border-bottom:1px solid #ddd; margin-bottom:1.1rem; height:1.4rem; }
+  .stamp-corner { position:absolute; top:0; right:0; width:36px; height:46px; border:1px solid #c9a84c; display:flex; align-items:center; justify-content:center; font-size:.7rem; color:#c9a84c; }
+  .back-cover { min-height:8in; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:2px solid #839958; padding:2rem; }
+  .btn-print { margin-top:1.5rem; font-family:'Special Elite',cursive; font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; padding:.7rem 1.6rem; background:#0A3323; color:#faf6e8; border:none; cursor:pointer; }
+  @media print { .btn-print { display:none; } }
+</style></head><body>
+
+<div class="cover">
+  <div class="cover-pre">A Free Gift from the Poetry Letter Club</div>
+  <div class="cover-moon">○ ◑ ● ◕ ○</div>
+  <h1 class="cover-title">The Slow<br><em>Letter Journal</em></h1>
+  <div class="cover-rule"></div>
+  <p class="cover-sub">Eight prompts for people who write slowly and feel deeply — designed to pair with your Poetry Letter Club deliveries.</p>
+  <div class="cover-attr">
+    Joely Williams · Poet & Artist<br>
+    @poems_neverdie<br>
+    poems never die
+  </div>
+</div>
+
+<div class="intro-page">
+  <h2>How to Use This Journal</h2>
+  <p>These prompts are not assignments. They are invitations.</p>
+  <p>You do not have to finish a prompt in one sitting. You do not have to write in order. You do not have to show anyone what you write here.</p>
+  <p>Some prompts will find you at the wrong time. Set them aside. Come back. The good ones wait.</p>
+  <p>If you are a Poetry Letter Club member, try pairing each prompt with the poem that arrived that week. Let the poem be the first word. Let your writing be the answer.</p>
+  <p style="margin-top:2rem;font-family:'Special Elite',cursive;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#839958;">— Joely Williams, @poems_neverdie</p>
+</div>
+
+${prompts.map(p => `
+<div class="prompt-page" style="position:relative;">
+  <div class="stamp-corner">✦</div>
+  <div class="prompt-num">Prompt ${p.n} of 08</div>
+  <div class="prompt-title">${p.title}</div>
+  <div class="prompt-body">${p.body}</div>
+  <div class="write-lines">
+    ${Array(14).fill('<div class="write-line"></div>').join('')}
+  </div>
+</div>`).join('')}
+
+<div class="back-cover">
+  <div class="cover-pre">Thank you for writing slowly</div>
+  <div class="cover-moon">○ ◑ ● ◕ ○</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;color:#0A3323;margin:1rem 0;font-style:italic;">poems never die</div>
+  <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.95rem;color:#5a6b4f;line-height:1.9;max-width:380px;margin:1rem auto 2rem;">If this journal meant something to you, the Poetry Letter Club delivers handwritten poems to your door twice a week — in envelopes made from old book pages, with a tea bag and a prompt enclosed.</p>
+  <p style="font-family:'Special Elite',cursive;font-size:.62rem;letter-spacing:.18em;color:#839958;line-height:2.2;">
+    Join: forms.gle/rhkk5opNt3QHMEiN9<br>
+    Instagram: @poems_neverdie<br>
+    Venmo: @joelywilliamswrites
+  </p>
+  <button class="btn-print" onclick="window.print()">Print This Journal</button>
+</div>
+
+</body></html>`);
+  w.document.close();
+}
+
 const POEMS=[{tag:'Poetry',title:'My Best Friend',excerpt:'I had a dream with Ruliette / She was walking across the street...',body:`I had a dream with Ruliette
 She was walking across the street
 in a world where everything already didn't make sense.
