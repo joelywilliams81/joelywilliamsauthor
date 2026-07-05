@@ -1,151 +1,779 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Joely Williams | Author & Poet</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joely Williams — Poet & Author</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital@0;1&display=swap');
+:root{
+  --dark-green:#0A3323;
+  --moss:#839958;
+  --beige:#F7F4D5;
+  --rosy:#D3968C;
+  --midnight:#105666;
+  --ink:#1a1a12;
+  --parchment:#f5f0d8;
+  --aged:#e8e0c0;
+  --gold:#c9a84c;
+  --dark-gold:#8b6914;
+  --paper:#faf6e8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--dark-green);font-family:'Libre Baskerville',Georgia,serif;color:var(--parchment);overflow-x:hidden;}
+
+/* texture overlay on body */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
+
+nav{background:var(--dark-green);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;box-shadow:0 2px 18px rgba(0,0,0,.35);}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;flex-wrap:wrap;}
+.nav-logo{font-family:'Special Elite',cursive;font-size:1rem;color:var(--gold);letter-spacing:.1em;padding:.9rem 0;cursor:pointer;border:none;background:none;}
+.nav-links{display:flex;list-style:none;flex-wrap:wrap;}
+.nav-links a{display:block;padding:.9rem .85rem;font-family:'Special Elite',cursive;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--beige);text-decoration:none;cursor:pointer;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a.active{color:var(--rosy);border-bottom:2px solid var(--rosy);}
+.page{display:none;position:relative;z-index:1;} .page.active{display:block;}
+
+/* HERO */
+.hero{min-height:96vh;display:grid;place-items:center;position:relative;overflow:hidden;padding:4rem 1.5rem;background:var(--dark-green);}
+
+/* botanical SVG background elements */
+.hero-botanical{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+
+.stamp-label{position:absolute;font-family:'Special Elite',cursive;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1.5px solid var(--gold);padding:4px 10px;opacity:.3;background:rgba(10,51,35,.4);}
+.sl1{top:7%;left:4%;transform:rotate(-9deg);}
+.sl2{top:12%;right:6%;transform:rotate(5deg);}
+.sl3{bottom:16%;left:3%;transform:rotate(3deg);}
+.sl4{bottom:9%;right:5%;transform:rotate(-6deg);}
+.moon-row{position:absolute;bottom:5%;right:5%;font-size:1rem;letter-spacing:8px;opacity:.15;color:var(--beige);}
+
+.hero-content{position:relative;z-index:2;text-align:center;max-width:680px;}
+.pre{font-family:'Special Elite',cursive;font-size:.65rem;letter-spacing:.32em;text-transform:uppercase;color:var(--moss);margin-bottom:1.4rem;display:flex;align-items:center;justify-content:center;gap:.8rem;}
+.pre::before,.pre::after{content:'';height:1px;width:32px;background:var(--moss);opacity:.6;}
+
+/* VINTAGE LABEL FRAME around name — SVG drawn */
+.name-frame{position:relative;display:inline-block;margin-bottom:1.5rem;}
+.name-frame svg{position:absolute;inset:-28px -40px;width:calc(100% + 80px);height:calc(100% + 56px);pointer-events:none;}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,5.8rem);font-weight:400;line-height:.95;color:var(--beige);letter-spacing:-.01em;padding:.5rem 1rem;}
+.hero-name em{font-style:italic;color:var(--rosy);}
+
+.hero-tag{font-family:'IM Fell English',serif;font-style:italic;font-size:1rem;color:var(--moss);margin:1.4rem 0 1.8rem;line-height:1.9;opacity:.9;}
+
+/* torn paper quote card */
+.quote-card{position:relative;max-width:460px;margin:0 auto 2rem;padding:1.8rem 2rem;background:var(--beige);color:var(--ink);transform:rotate(-.5deg);}
+.quote-card::before,.quote-card::after{content:'';position:absolute;left:0;right:0;height:14px;}
+.quote-card::before{top:-12px;background:var(--beige);clip-path:polygon(0% 100%,2% 15%,4% 85%,6% 20%,8% 75%,10% 10%,12% 80%,14% 25%,16% 70%,18% 5%,20% 85%,22% 20%,24% 65%,26% 10%,28% 80%,30% 35%,32% 90%,34% 20%,36% 75%,38% 15%,40% 85%,42% 30%,44% 70%,46% 20%,48% 80%,50% 10%,52% 75%,54% 25%,56% 90%,58% 30%,60% 70%,62% 15%,64% 85%,66% 30%,68% 80%,70% 20%,72% 65%,74% 10%,76% 80%,78% 35%,80% 90%,82% 25%,84% 70%,86% 15%,88% 80%,90% 35%,92% 85%,94% 20%,96% 70%,98% 30%,100% 80%,100% 100%);}
+.quote-card::after{bottom:-12px;background:var(--beige);clip-path:polygon(0% 0%,2% 85%,4% 15%,6% 90%,8% 25%,10% 75%,12% 5%,14% 80%,16% 30%,18% 70%,20% 10%,22% 85%,24% 30%,26% 90%,28% 15%,30% 70%,32% 5%,34% 80%,36% 25%,38% 85%,40% 10%,42% 75%,44% 25%,46% 80%,48% 15%,50% 85%,52% 20%,54% 75%,56% 10%,58% 85%,60% 30%,62% 80%,64% 20%,66% 75%,68% 15%,70% 85%,72% 25%,74% 70%,76% 10%,78% 80%,80% 35%,82% 80%,84% 20%,86% 70%,88% 10%,90% 80%,92% 30%,94% 80%,96% 25%,98% 75%,100% 15%,100% 0%);}
+.quote-card p{font-family:'IM Fell English',serif;font-style:italic;font-size:1rem;line-height:2;color:var(--ink);}
+.quote-card .att{font-family:'Special Elite',cursive;font-size:.58rem;letter-spacing:.15em;color:var(--dark-gold);margin-top:.7rem;opacity:.8;}
+/* washi tape */
+.washi{position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-1.5deg);width:55px;height:18px;background:repeating-linear-gradient(45deg,rgba(211,150,140,.5),rgba(211,150,140,.5) 3px,rgba(211,150,140,.18) 3px,rgba(211,150,140,.18) 6px);}
+
+.btn-group{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem;}
+.btn{font-family:'Special Elite',cursive;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.75rem 1.6rem;border:1px solid currentColor;background:transparent;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-p{color:var(--beige);} .btn-p:hover{background:var(--beige);color:var(--dark-green);}
+.btn-r{color:var(--rosy);} .btn-r:hover{background:var(--rosy);color:var(--beige);}
+.btn-m{color:var(--midnight);border-color:var(--midnight);} .btn-m:hover{background:var(--midnight);color:var(--beige);}
+
+/* TAGLINE BAND */
+.band{background:var(--midnight);padding:2.2rem 1.5rem;border-top:1px solid rgba(201,168,76,.25);border-bottom:1px solid rgba(201,168,76,.25);}
+.band-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;text-align:center;}
+.band-item-icon{font-size:1.2rem;color:var(--gold);margin-bottom:.3rem;}
+.band-item-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--beige);margin-bottom:.2rem;}
+.band-item-sub{font-family:'Special Elite',cursive;font-size:.58rem;color:var(--moss);letter-spacing:.14em;}
+
+/* SHARED SECTION */
+.sec{max-width:1100px;margin:0 auto;padding:4.5rem 1.5rem;}
+.sec-lbl{font-family:'Special Elite',cursive;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--moss);margin-bottom:.6rem;display:flex;align-items:center;gap:.8rem;}
+.sec-lbl::after{content:'';height:1px;flex:1;background:var(--moss);opacity:.3;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.7rem);font-weight:400;color:var(--beige);margin-bottom:2.2rem;line-height:1.2;}
+.sec-title em{color:var(--rosy);font-style:italic;}
+.ornament{text-align:center;font-size:.9rem;color:var(--gold);opacity:.4;letter-spacing:.8rem;display:block;margin-bottom:2.2rem;}
+
+/* POEMS */
+.poems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:2rem;}
+.poem-card{background:var(--beige);color:var(--ink);padding:2rem 1.8rem;position:relative;transform:rotate(var(--r,0deg));transition:transform .25s,box-shadow .25s;cursor:default;border:1px solid var(--aged);}
+.poem-card:hover{transform:rotate(0deg) translateY(-5px);box-shadow:6px 6px 20px rgba(0,0,0,.35);z-index:3;}
+.poem-card:nth-child(odd){--r:-.7deg;} .poem-card:nth-child(even){--r:.5deg;}
+.poem-card .washi-top{position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-1deg);width:52px;height:16px;background:repeating-linear-gradient(45deg,rgba(131,153,88,.45),rgba(131,153,88,.45) 3px,rgba(131,153,88,.15) 3px,rgba(131,153,88,.15) 6px);}
+.poem-tag{font-family:'Special Elite',cursive;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--midnight);border:1px solid var(--midnight);padding:2px 7px;display:inline-block;margin-bottom:.7rem;}
+.poem-title-c{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin-bottom:.4rem;line-height:1.3;}
+.poem-first{font-family:'IM Fell English',serif;font-style:italic;font-size:.87rem;line-height:1.8;color:#3a3028;border-top:1px solid var(--aged);padding-top:.7rem;margin-top:.5rem;}
+.poem-read{font-family:'Special Elite',cursive;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--midnight);background:none;border:none;cursor:pointer;margin-top:.9rem;padding:0;transition:color .2s;}
+.poem-read:hover{color:var(--rosy);}
+
+/* VINTAGE LABEL decorative frame for section headers */
+.label-frame{display:inline-block;position:relative;padding:1rem 2.5rem;margin-bottom:1.5rem;}
+.label-frame svg{position:absolute;inset:0;width:100%;height:100%;}
+.label-frame-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--beige);position:relative;z-index:1;}
+
+/* GALLERY */
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2.5rem;}
+.polaroid{background:var(--paper);padding:10px 10px 38px;box-shadow:4px 4px 18px rgba(0,0,0,.4);transform:rotate(var(--pr,0deg));transition:transform .25s;cursor:zoom-in;position:relative;border:1px solid var(--aged);}
+.polaroid:hover{transform:rotate(0deg) scale(1.04);z-index:5;}
+.polaroid:nth-child(1){--pr:-2.8deg;} .polaroid:nth-child(2){--pr:2deg;} .polaroid:nth-child(3){--pr:-1.5deg;} .polaroid:nth-child(4){--pr:3deg;}
+.pol-img{width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--dark-green);}
+.pol-img img{width:100%;height:100%;object-fit:cover;}
+.pol-cap{font-family:'Special Elite',cursive;font-size:.64rem;color:var(--dark-gold);text-align:center;margin-top:8px;letter-spacing:.08em;}
+
+/* ABOUT */
+.ag{display:grid;grid-template-columns:1fr 1.6fr;gap:3.5rem;align-items:start;}
+@media(max-width:680px){.ag{grid-template-columns:1fr;}.nav-links a{padding:.7rem .5rem;font-size:.58rem;}}
+.cf{width:100%;aspect-ratio:3/4;background:var(--midnight);border:7px solid var(--beige);box-shadow:10px 10px 0 var(--rosy),14px 14px 0 rgba(0,0,0,.25);transform:rotate(-2deg);overflow:hidden;position:relative;}
+.cf img{width:100%;height:100%;object-fit:cover;}
+.cf-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'IM Fell English',serif;font-style:italic;font-size:1rem;color:rgba(245,240,216,.25);text-align:center;padding:2rem;}
+.at p{font-size:.96rem;line-height:1.9;margin-bottom:1.1rem;}
+.at .hl{font-family:'IM Fell English',serif;font-style:italic;font-size:1.1rem;color:var(--rosy);}
+
+/* PLC */
+.plc-hero{background:var(--midnight);position:relative;padding:4.5rem 1.5rem 3.5rem;text-align:center;overflow:hidden;border-bottom:3px solid var(--rosy);}
+.plc-hero::before{content:'POEMS NEVER DIE';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-7deg);font-family:'Special Elite',cursive;font-size:clamp(2rem,7vw,5.5rem);letter-spacing:.2em;color:rgba(211,150,140,.07);white-space:nowrap;pointer-events:none;}
+.plc-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3.8rem);font-style:italic;color:var(--beige);position:relative;z-index:1;margin-bottom:.7rem;}
+.plc-sub{font-family:'Special Elite',cursive;font-size:.68rem;letter-spacing:.25em;color:var(--moss);position:relative;z-index:1;}
+.plc-info-strip{background:var(--beige);color:var(--ink);padding:2.5rem 1.5rem;}
+.plc-grid{max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1.5rem;text-align:center;}
+.plc-dl{font-family:'Special Elite',cursive;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--moss);margin-bottom:.3rem;}
+.plc-dv{font-family:'Playfair Display',serif;font-size:.93rem;color:var(--ink);line-height:1.5;}
+.plc-jb{display:inline-block;font-family:'Special Elite',cursive;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 2.2rem;background:var(--rosy);color:var(--beige);border:none;cursor:pointer;text-decoration:none;transition:background .2s;}
+.plc-jb:hover{background:#c07a6e;}
+
+/* CLAUDE ZONE */
+.c-zone{max-width:750px;margin:0 auto;padding:4rem 1.5rem;}
+.mode-tabs{display:flex;margin-bottom:2rem;border-bottom:1px solid rgba(245,240,216,.15);flex-wrap:wrap;}
+.mtab{font-family:'Special Elite',cursive;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.1rem;background:transparent;border:none;color:rgba(245,240,216,.45);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
+.mtab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.mtab:hover{color:var(--beige);}
+.mpanel{display:none;} .mpanel.active{display:block;}
+.prompt-area{width:100%;background:rgba(245,240,216,.06);border:1px solid rgba(245,240,216,.15);color:var(--beige);font-family:'IM Fell English',serif;font-style:italic;font-size:1rem;padding:1.1rem 1.3rem;resize:vertical;min-height:85px;line-height:1.75;margin-bottom:.9rem;outline:none;transition:border-color .2s;}
+.prompt-area:focus{border-color:rgba(245,240,216,.35);}
+.prompt-area::placeholder{color:rgba(245,240,216,.25);}
+.gen-btn{font-family:'Special Elite',cursive;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:.8rem 1.8rem;background:var(--rosy);color:var(--beige);border:none;cursor:pointer;transition:background .2s,opacity .2s;display:inline-flex;align-items:center;gap:.5rem;}
+.gen-btn:hover:not(:disabled){background:#c07a6e;}
+.gen-btn:disabled{opacity:.4;cursor:not-allowed;}
+.poem-out{margin-top:2rem;padding:2rem 1.8rem 1.6rem;background:rgba(245,240,216,.04);border:1px solid rgba(245,240,216,.1);border-left:3px solid var(--rosy);position:relative;display:none;transform:rotate(-.3deg);}
+.poem-out.vis{display:block;}
+.out-tag{position:absolute;top:-10px;left:16px;font-family:'Special Elite',cursive;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;background:var(--dark-green);padding:0 7px;color:var(--gold);border:1px solid var(--gold);}
+.poem-txt{font-family:'IM Fell English',serif;font-style:italic;font-size:.98rem;line-height:2.05;color:var(--beige);white-space:pre-wrap;}
+.chat-log{max-height:340px;overflow-y:auto;margin-bottom:1.1rem;display:flex;flex-direction:column;gap:.85rem;}
+.chat-log::-webkit-scrollbar{width:3px;} .chat-log::-webkit-scrollbar-thumb{background:rgba(245,240,216,.15);}
+.cmsg{padding:.85rem 1.2rem;font-size:.92rem;line-height:1.75;max-width:86%;}
+.cmsg.user{background:rgba(245,240,216,.08);border:1px solid rgba(245,240,216,.12);align-self:flex-end;font-family:'Libre Baskerville',serif;color:var(--beige);}
+.cmsg.bot{background:rgba(16,86,102,.2);border:1px solid rgba(16,86,102,.35);align-self:flex-start;font-family:'IM Fell English',serif;font-style:italic;color:var(--beige);white-space:pre-wrap;}
+.ldots span{display:inline-block;width:5px;height:5px;background:var(--gold);border-radius:50%;margin:0 2px;animation:db 1.2s ease-in-out infinite;}
+.ldots span:nth-child(2){animation-delay:.2s;} .ldots span:nth-child(3){animation-delay:.4s;}
+@keyframes db{0%,80%,100%{transform:translateY(0);opacity:.3;}40%{transform:translateY(-5px);opacity:1;}}
+
+/* CONTACT */
+.envelope{max-width:580px;margin:0 auto;background:var(--beige);color:var(--ink);padding:2.5rem 2rem;position:relative;transform:rotate(-.4deg);box-shadow:8px 8px 0 var(--rosy),13px 13px 0 rgba(0,0,0,.18);}
+.env-flap{width:100%;height:0;border-left:290px solid transparent;border-right:290px solid transparent;border-top:52px solid var(--aged);margin-bottom:2rem;}
+.cr{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed var(--moss);padding:.6rem 0;gap:.8rem;flex-wrap:wrap;}
+.cr-lbl{font-family:'Special Elite',cursive;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--moss);}
+.cr-val{font-family:'IM Fell English',serif;font-style:italic;font-size:.9rem;color:var(--ink);}
+.cr-val a{color:var(--midnight);text-decoration:none;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,51,35,.93);z-index:200;display:none;place-items:center;padding:2rem;}
+.modal-overlay.open{display:grid;}
+.modal-paper{background:var(--beige);color:var(--ink);max-width:620px;width:100%;max-height:88vh;overflow-y:auto;padding:3rem 2.5rem 2.5rem;position:relative;transform:rotate(-.4deg);box-shadow:10px 10px 0 rgba(211,150,140,.4);}
+.modal-close{position:absolute;top:.9rem;right:1.1rem;font-family:'Special Elite',cursive;font-size:.68rem;letter-spacing:.15em;background:none;border:none;color:var(--moss);cursor:pointer;}
+.modal-tag{font-family:'Special Elite',cursive;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--midnight);border:1px solid var(--midnight);padding:2px 8px;display:inline-block;margin-bottom:.9rem;}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);margin-bottom:1.4rem;line-height:1.2;}
+.modal-poem{font-family:'IM Fell English',serif;font-style:italic;font-size:.97rem;line-height:2.1;color:#2a2018;white-space:pre-wrap;}
+
+footer{background:var(--dark-green);border-top:2px solid rgba(201,168,76,.25);padding:2rem 1.5rem;text-align:center;}
+footer p{font-family:'Special Elite',cursive;font-size:.6rem;letter-spacing:.18em;color:rgba(245,240,216,.3);text-transform:uppercase;line-height:2.2;}
+footer a{color:var(--gold);text-decoration:none;}
+</style>
 </head>
 <body>
-  <div class="page-wrapper">
-    <header class="site-header">
-      <a class="brand-link" href="index.html">
-        <span class="brand-name">Joely Williams</span>
-        <span class="brand-tagline">Author • Poet • Community Builder</span>
-      </a>
-      <nav class="site-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="book.html">Book</a>
-        <a href="custom-poetry.html">Custom Poetry</a>
-        <a href="poems.html">Poems</a>
-        <a href="published.html">Published Work</a>
-        <a href="freebies.html">Freebies</a>
-        <a href="contact.html">Contact</a>
-        <a href="socials.html">Social Media</a>
-      </nav>
-    </header>
 
-    <main>
-      <section class="hero">
-        <h1>Stories that hold space for healing</h1>
-        <p>
-          Welcome to the home of author and poet Joely Williams. Explore poems and
-          prose rooted in resilience, community, and care&mdash;along with custom
-          pieces created to honor the most meaningful moments of your life.
-        </p>
-        <div class="cta-buttons">
-          <a class="button-primary" href="custom-poetry.html">Commission Custom Poetry</a>
-          <a class="button-secondary" href="book.html">Explore the Workbook</a>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-heading">What you&apos;ll find here</h2>
-        <p class="section-lede">
-          From published essays to intimate poems and free community resources,
-          each corner of this site is designed to meet readers right where they
-          are.
-        </p>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <h3>Books & Workbooks</h3>
-            <p>
-              Dive into <em>Put the Phone Down, We Have a Job to Do</em>, a trauma
-              healing workbook filled with prompts that invite grounded reflection.
-            </p>
-            <a href="book.html">Visit the book page →</a>
-          </div>
-          <div class="feature-card">
-            <h3>Ceremonial Poetry</h3>
-            <p>
-              Commission bespoke writing for weddings, celebrations of life,
-              birthdays, and community events that deserve words crafted with care.
-            </p>
-            <a href="custom-poetry.html">Discover custom offerings →</a>
-          </div>
-          <div class="feature-card">
-            <h3>Community Resources</h3>
-            <p>
-              Access downloads, prompts, and reading lists meant to support your
-              own creative process and collective wellness work.
-            </p>
-            <a href="freebies.html">Browse the resource library →</a>
-          </div>
-          <div class="feature-card">
-            <h3>Latest Publications</h3>
-            <p>
-              Stay up to date with Joely&apos;s essays and poems published across
-              literary magazines, platforms, and collaborative projects.
-            </p>
-              <a href="published.html">Read recent features →</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section poetry-highlight">
-        <article>
-          <h2>Custom poetry for every milestone</h2>
-          <p>
-            Honor the ceremonies, transitions, and celebrations that shape your
-            story. Together, we&apos;ll create a poem or speech that captures the love,
-            legacy, and presence at the heart of your event.
-          </p>
-          <ul class="highlight-list">
-            <li>Wedding vows, ceremony readings, and anniversary tributes</li>
-            <li>Celebrations of life and memorial offerings grounded in compassion</li>
-            <li>Birthdays, retirements, graduations, and community gatherings</li>
-            <li>Corporate, nonprofit, and school events seeking intentional language</li>
-          </ul>
-          <div class="cta-buttons">
-            <a class="button-primary" href="custom-poetry.html">See the offerings</a>
-            <a class="button-secondary" href="contact.html">Start a conversation</a>
-          </div>
-        </article>
-      </section>
-
-      <section class="section">
-        <h2 class="section-heading">Notes from the community</h2>
-        <p class="section-lede">
-          Joely&apos;s work invites vulnerability and joy in equal measure. Here&apos;s what
-          readers, partners, and loved ones have shared after encountering her
-          writing live and on the page.
-        </p>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <h3>On the page</h3>
-            <p>
-              “Every prompt in this workbook felt like a gentle invitation to return
-              to myself. It&apos;s become a trusted companion for our healing circles.”
-            </p>
-            <a href="book.html">Explore the book →</a>
-          </div>
-          <div class="feature-card">
-            <h3>In the room</h3>
-            <p>
-              “Joely&apos;s custom poem held our entire family during the memorial
-              service. It carried tenderness, honesty, and the exact words we
-              needed.”
-            </p>
-            <a href="custom-poetry.html">Commission your piece →</a>
-          </div>
-          <div class="feature-card">
-            <h3>Across the web</h3>
-            <p>
-              “Her published essays continue to be a testament to resilience and the
-              care she pours into community storytelling.”
-            </p>
-            <a href="socials.html">Stay connected →</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      &copy; 2025 Joely Williams. All rights reserved.
-    </footer>
+<nav>
+  <div class="nav-inner">
+    <button class="nav-logo" onclick="showPage('home')">Joely Williams</button>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')" id="tab-home" class="active">Home</a></li>
+      <li><a onclick="showPage('about')" id="tab-about">About</a></li>
+      <li><a onclick="showPage('poems')" id="tab-poems">Poems</a></li>
+      <li><a onclick="showPage('gallery')" id="tab-gallery">Collages</a></li>
+      <li><a onclick="showPage('plc')" id="tab-plc">Letter Club</a></li>
+      <li><a onclick="showPage('freebies')" id="tab-freebies">Freebies</a></li>
+      <li><a onclick="showPage('contact')" id="tab-contact">Contact</a></li>
+    </ul>
   </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <!-- botanical SVG decorations -->
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.07;" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="80" cy="200" rx="55" ry="90" fill="none" stroke="#839958" stroke-width="1.5" transform="rotate(-20,80,200)"/>
+      <ellipse cx="80" cy="200" rx="28" ry="55" fill="none" stroke="#839958" stroke-width="1" transform="rotate(10,80,200)"/>
+      <line x1="80" y1="110" x2="80" y2="290" stroke="#839958" stroke-width="1"/>
+      <ellipse cx="1120" cy="600" rx="55" ry="90" fill="none" stroke="#839958" stroke-width="1.5" transform="rotate(20,1120,600)"/>
+      <ellipse cx="1120" cy="600" rx="28" ry="55" fill="none" stroke="#839958" stroke-width="1" transform="rotate(-10,1120,600)"/>
+      <line x1="1120" y1="510" x2="1120" y2="690" stroke="#839958" stroke-width="1"/>
+      <circle cx="200" cy="680" r="30" fill="none" stroke="#D3968C" stroke-width="1"/>
+      <circle cx="200" cy="680" r="18" fill="none" stroke="#D3968C" stroke-width=".8"/>
+      <circle cx="1000" cy="120" r="30" fill="none" stroke="#D3968C" stroke-width="1"/>
+      <circle cx="1000" cy="120" r="18" fill="none" stroke="#D3968C" stroke-width=".8"/>
+      <!-- crescent -->
+      <path d="M600 40 A25 25 0 1 1 625 65 A18 18 0 1 0 600 40Z" fill="#F7F4D5" opacity=".3"/>
+    </svg>
+
+    <div class="stamp-label sl1">Monaco · Poste · 1f</div>
+    <div class="stamp-label sl2">Museum Specimen</div>
+    <div class="stamp-label sl3">Days Off · H. Van Dyke</div>
+    <div class="stamp-label sl4">October · Begins</div>
+    <div class="moon-row">○ ◑ ● ◕ ○</div>
+
+    <div class="hero-content">
+      <div class="pre">Poet · Artist · Letter Writer</div>
+
+      <!-- vintage label frame around name -->
+      <div class="name-frame">
+        <svg viewBox="0 0 340 130" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:-28px -40px;width:calc(100% + 80px);height:calc(100% + 56px);">
+          <rect x="6" y="6" width="328" height="118" rx="4" ry="4" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity=".55"/>
+          <rect x="14" y="14" width="312" height="102" rx="2" ry="2" fill="none" stroke="#c9a84c" stroke-width=".8" opacity=".35"/>
+          <!-- corner ornaments -->
+          <path d="M6,26 Q6,6 26,6" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity=".5"/>
+          <path d="M314,6 Q334,6 334,26" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity=".5"/>
+          <path d="M6,104 Q6,124 26,124" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity=".5"/>
+          <path d="M314,124 Q334,124 334,104" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity=".5"/>
+          <!-- top/bottom center flourish -->
+          <path d="M155,6 Q170,0 185,6" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".4"/>
+          <path d="M155,124 Q170,130 185,124" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".4"/>
+          <circle cx="170" cy="6" r="2.5" fill="#c9a84c" opacity=".4"/>
+          <circle cx="170" cy="124" r="2.5" fill="#c9a84c" opacity=".4"/>
+        </svg>
+        <h1 class="hero-name">Joely<br><em>Williams</em></h1>
+      </div>
+
+      <p class="hero-tag">poems that arrive by hand · envelopes made from old books<br>tea bags · a place to write back</p>
+
+      <div class="quote-card" style="position:relative;">
+        <div class="washi"></div>
+        <p>The cold is not the enemy.<br>The cold is the condition.<br>We learned the difference early.<br>We are still learning the difference.</p>
+        <div class="att">— Cold-Blooded</div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-p" onclick="showPage('poems')">Read My Work</button>
+        <button class="btn btn-r" onclick="showPage('plc')">Join the Letter Club</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="band-inner">
+      <div><div class="band-item-icon">✦</div><div class="band-item-title">Poet</div><div class="band-item-sub">published · submitted · lyric</div></div>
+      <div><div class="band-item-icon" style="color:var(--rosy);">✦</div><div class="band-item-title">Collage Artist</div><div class="band-item-sub">mixed media · vintage ephemera</div></div>
+      <div><div class="band-item-icon" style="color:var(--moss);">✦</div><div class="band-item-title">Letter Writer</div><div class="band-item-sub">Poetry Letter Club founder</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div style="background:var(--dark-green);padding:4rem 0 0;">
+    <div class="sec">
+      <div class="sec-lbl">Who I Am</div>
+      <h2 class="sec-title">Poet, Artist,<br><em>Maker of Things</em></h2>
+      <div class="ag">
+        <div style="position:relative;">
+          <div class="cf"><div class="cf-ph">your photo here</div></div>
+          <div class="washi" style="top:-10px;left:50%;transform:translateX(-50%);position:absolute;"></div>
+        </div>
+        <div class="at" style="color:var(--beige);">
+          <p class="hl">Joely Williams is a poet and multidisciplinary artist based in Columbia, South Carolina, with roots in the Bronx and the Caribbean diaspora.</p>
+          <p style="color:rgba(245,240,216,.82);">Her work lives at the intersection of the everyday and the estranging — concrete images, diaspora memory, a persistent attention to what things look like just before they change.</p>
+          <p style="color:rgba(245,240,216,.82);">She is the founder of the <strong style="color:var(--gold);">Poetry Letter Club</strong> (@poems_neverdie), a handwritten poetry subscription delivered twice weekly in handmade envelopes constructed from old book pages, with tea bags and journaling prompts enclosed.</p>
+          <p style="color:rgba(245,240,216,.82);">She writes poetry, flash fiction, noir, speculative fiction, magical realism, and ekphrasis. Her work has been submitted to and considered by venues including Penn Review, Harpur Palate, Rock and a Hard Place Press, Omenana, The Deadlands, and others.</p>
+          <div style="margin-top:1.8rem;"><button class="btn btn-r" onclick="showPage('poems')">Read Recent Work →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POEMS -->
+<div id="page-poems" class="page">
+  <div style="background:var(--dark-green);padding:4rem 0 0;">
+    <div class="sec">
+      <div class="sec-lbl">Recent Work</div>
+      <h2 class="sec-title">Poems & <em>Fictions</em></h2>
+      <span class="ornament">· · ✦ · ·</span>
+      <div class="poems-grid" id="poems-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div id="page-gallery" class="page">
+  <div style="background:var(--dark-green);padding:4rem 0 0;">
+    <div class="sec">
+      <div class="sec-lbl">Visual Work</div>
+      <h2 class="sec-title">Collage <em>Archive</em></h2>
+      <span class="ornament">· · ✦ · ·</span>
+      <div class="gal-grid">
+        <div class="polaroid"><div class="pol-img" id="col1-wrap"><img id="col1" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;"><div id="col1-ph" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Special Elite',cursive;color:rgba(245,240,216,.2);font-size:.62rem;text-align:center;padding:1rem;">stamps · oranges<br>moon phases · red</div></div><div class="pol-cap">collage no. 1 — stamps & moons</div></div>
+        <div class="polaroid"><div class="pol-img" id="col2-wrap"><img id="col2" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;"><div id="col2-ph" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Special Elite',cursive;color:rgba(245,240,216,.2);font-size:.62rem;text-align:center;padding:1rem;">flowers · moons<br>butterflies · cosmos</div></div><div class="pol-cap">collage no. 2 — butterflies & blooms</div></div>
+        <div class="polaroid"><div class="pol-img" id="col3-wrap"><img id="col3" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;"><div id="col3-ph" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Special Elite',cursive;color:rgba(245,240,216,.2);font-size:.62rem;text-align:center;padding:1rem;">text fragments<br>roses · Days Off</div></div><div class="pol-cap">collage no. 3 — text & roses</div></div>
+        <div class="polaroid"><div class="pol-img" id="col4-wrap"><img id="col4" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;"><div id="col4-ph" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Special Elite',cursive;color:rgba(245,240,216,.2);font-size:.62rem;text-align:center;padding:1rem;">Van Gogh · owl<br>October · city</div></div><div class="pol-cap">collage no. 4 — October</div></div>
+      </div>
+      <div style="text-align:center;margin-top:3rem;">
+        <label style="font-family:'Special Elite',cursive;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--moss);cursor:pointer;border:1px solid var(--moss);padding:.6rem 1.4rem;display:inline-block;">
+          Upload your collages
+          <input type="file" accept="image/*" multiple style="display:none;" onchange="loadUserImages(this)">
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLC -->
+<div id="page-plc" class="page">
+  <div class="plc-hero">
+    <div class="plc-title">Poetry Letter Club</div>
+    <div class="plc-sub">@poems_neverdie · handwritten poems by mail</div>
+  </div>
+  <div class="plc-info-strip">
+    <div class="plc-grid">
+      <div><div class="plc-dl">Frequency</div><div class="plc-dv">Twice weekly, by hand</div></div>
+      <div><div class="plc-dl">What arrives</div><div class="plc-dv">A poem · a tea bag · a journaling prompt</div></div>
+      <div><div class="plc-dl">Envelope</div><div class="plc-dv">Handmade from old book pages</div></div>
+      <div><div class="plc-dl">Price</div><div class="plc-dv">Pay what you can</div></div>
+    </div>
+    <div style="text-align:center;margin-top:2rem;display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;">
+      <a href="https://forms.gle/rhkk5opNt3QHMEiN9" target="_blank" class="plc-jb">Join the Club</a>
+      <a href="https://venmo.com/joelywilliamswrites" target="_blank" class="btn btn-m" style="display:inline-block;padding:.8rem 1.6rem;">Pay via Venmo</a>
+    </div>
+  </div>
+  <div style="background:var(--dark-green);border-top:1px solid rgba(131,153,88,.2);padding:4rem 1.5rem;">
+    <div style="max-width:620px;margin:0 auto;text-align:center;">
+      <div class="sec-lbl" style="justify-content:center;">Stay Connected</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.65rem;color:var(--beige);margin-bottom:1rem;font-weight:400;">Want to <em style="color:var(--rosy);">Write Back?</em></h2>
+      <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.97rem;color:var(--moss);line-height:1.95;margin-bottom:2rem;">Members are always welcome to send a letter back. Every poem that leaves my hands is an open door. Write to me, respond to what arrived, or simply say hello.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;">
+        <a href="https://forms.gle/rhkk5opNt3QHMEiN9" target="_blank" class="plc-jb">Join the Club</a>
+        <a href="https://instagram.com/poems_neverdie" target="_blank" class="btn btn-p" style="display:inline-block;padding:.8rem 1.6rem;">@poems_neverdie</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div style="background:var(--dark-green);padding:4rem 0;">
+    <div class="sec">
+      <div class="sec-lbl">Get in Touch</div>
+      <h2 class="sec-title">Send a <em>Letter</em></h2>
+      <div class="envelope">
+        <div class="env-flap"></div>
+        <div class="cr"><span class="cr-lbl">Instagram</span><span class="cr-val"><a href="https://instagram.com/poems_neverdie" target="_blank">@poems_neverdie</a></span></div>
+        <div class="cr"><span class="cr-lbl">Join the Club</span><span class="cr-val"><a href="https://forms.gle/rhkk5opNt3QHMEiN9" target="_blank">Sign-up form →</a></span></div>
+        <div class="cr"><span class="cr-lbl">Venmo</span><span class="cr-val"><a href="https://venmo.com/joelywilliamswrites" target="_blank">@joelywilliamswrites</a></span></div>
+        <div class="cr"><span class="cr-lbl">PayPal</span><span class="cr-val">@Williams8119</span></div>
+        <div class="cr"><span class="cr-lbl">GitHub</span><span class="cr-val"><a href="https://github.com/joelywilliams81/joelywilliamsauthor" target="_blank">joelywilliams81</a></span></div>
+        <div style="text-align:center;margin-top:1.8rem;"><a href="https://forms.gle/rhkk5opNt3QHMEiN9" target="_blank" class="plc-jb">Join the Poetry Letter Club</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POEM MODAL -->
+<div class="modal-overlay" id="poem-modal" onclick="closeModal(event)">
+  <div class="modal-paper">
+    <button class="modal-close" onclick="document.getElementById('poem-modal').classList.remove('open')">close ×</button>
+    <div class="modal-tag" id="m-tag"></div>
+    <h2 class="modal-title" id="m-title"></h2>
+    <div class="modal-poem" id="m-body"></div>
+  </div>
+</div>
+
+<footer>
+  <p>Joely Williams · Poet & Author · Columbia, South Carolina</p>
+  <p><a href="https://github.com/joelywilliams81/joelywilliamsauthor" target="_blank">GitHub</a> · <a href="https://instagram.com/poems_neverdie" target="_blank">@poems_neverdie</a></p>
+  <p style="margin-top:.4rem;opacity:.4;">poems never die</p>
+</footer>
+
+<script>
+const POEMS=[{tag:'Poetry',title:'My Best Friend',excerpt:'I had a dream with Ruliette / She was walking across the street...',body:`I had a dream with Ruliette
+She was walking across the street
+in a world where everything already didn't make sense.
+
+You used to be so quiet like a mouse
+barely looking me at times—
+Afraid of something I can never understand.
+
+Someone made you speak out loud.
+Pressured you into audible squeaks
+(you couldn't fool me you were still a mouse).
+
+I used to sneak over at your house
+when Mami finally said I could walk to school alone.
+We'd put on make-up before school.
+Mami never let me walk alone again.
+
+I called out for you in this made-up world:
+Rulie!
+and there you were walking away fast.
+In a hurry to somewhere.
+
+I woke up hoping that I can reach out to you
+Speak to you ask you where you're headed.
+but then the truth came crashing—
+you are not here with us anymore in this world.`},{tag:'Poetry',title:'A Birth in The Bronx',excerpt:'The hard part is over now / She is in your arms...',body:`The hard part is over now
+She is in your arms.
+The easy part begins
+you love her like its no ones business.
+
+This you cannot commodify
+This you cannot sell
+This you cannot package into brown boxes
+and ship world wide.
+
+The easy part begins:
+A watchful eye will do much in this world of chaos.
+A watchful eye to not bump head, knees, shoulders, toes
+A watchful eye for sad eyes and angry faces
+A watchful eye for hunger, poop or pee diapers
+A tired eye to get some rest when she sleeps!
+
+A hand to jot it all down
+to capture a moment in words, in picture, in smells.
+Cause the hard parts over.
+
+The easy part—
+getting used to it—
+like tying a shoe when you were a child
+it'll come to you like a 6th sense.
+
+You have all you need
+Everyone is prepared to give a hand, tooth and nail.
+The car seats in, the ride will be smooth.
+
+The easy part is having a mother and father like you.`},{tag:'Poetry',title:'Cold-Blooded',excerpt:'We are baby North American painted turtles. / We are a clutch...',body:`We are baby North American painted turtles.
+We are a clutch.
+We hatched into the chill of what had already begun.
+
+Nothing to eat. Nothing to do.
+We cannot clamber out of the hole
+so we stay where we are.
+
+It is winter. Negative ten.
+Ice crystals forming around us
+and inside us,
+in the spaces between what we're made of.
+
+Here is the thing about our skin:
+what is killing everything else
+is what keeps us.
+
+The cold is not the enemy.
+The cold is the condition.
+We learned the difference early.
+We are still learning the difference.
+
+Our deep-frozen state is the waiting.
+We are very good at waiting.
+We have had to be.
+
+Spring will come.
+We know this not because we are optimistic
+but because we have the cellular memory
+of springs that came before we existed.
+
+The body knows what the mind is still arguing about.
+
+The ice melts from around us first.
+Then from within us. Slowly.
+carry whatever it carries.
+
+This is not a metaphor for recovery.`},{tag:'Poetry',title:'What the Scaffolding Carries',excerpt:'I dragged my arm along the green building / the way you drag a hand through water...',body:`I dragged my arm along the green building
+the way you drag a hand through water
+to feel the resistance of a thing that will not move for you.
+
+A year's worth of the city came off on my skin:
+scaffold-soot, rain-residue,
+the accumulated breath of everyone
+who had passed and touched and left
+their particular grime on the green.
+
+I didn't wipe it off.
+This is what the neighborhood does if you let it:
+marks you. Leaves its year on your arm.
+Lets you carry it south,
+lets you carry it wherever you go,
+invisible now but present,
+the way all the places you have ever lived
+are present in the body
+as a particular kind of knowledge
+the skin holds without being asked.
+
+The scaffolding is gone now.
+Something new is being built
+where the green building was.
+It does not know my arm.
+It has not earned my grime.
+
+I still say it in my sleep.
+The city does not know I have left.
+My body has not gotten the message.
+
+I am still, in the bones of me, on the fourth floor.
+I am still watching the light.
+I am still—`},{tag:'Poetry',title:'my phone knows when i am lonely',excerpt:'Around 11:40 p.m. / my phone starts suggesting sad songs / before I know I am sad...',body:`Around 11:40 p.m.
+my phone starts suggesting sad songs
+before I know I am sad.
+
+Not dramatically sad.
+Not a sad movie sad.
+Just the kind where I stand in the kitchen too long
+with the refrigerator open
+letting cold air collect on my legs
+like a night out in the winter.
+
+The algorithm has learned
+my particular silences.
+It knows when I start searching:
+
+how to sleep
+why do I feel weird lately
+bronx apartments 2004
+pictures of old bodegas
+does grief make your body heavier
+how long does nostalgia last
+
+It starts feeding me women
+speaking softly about healing.
+Men making coffee in dark apartments.
+Clips of oceans.
+People explaining loneliness
+under blue lighting.
+
+Sometimes I think:
+this little rectangle
+has watched me survive more nights
+than most people have.
+
+I fall asleep holding it
+like somebody's hand.
+
+In the morning
+there are fingerprints across the screen
+and a notification asking
+how I slept.
+
+I almost answer honestly.`},{tag:'Poetry',title:'bronx dream with disappearing supermarkets',excerpt:'The supermarket only exists in my dreams now. / C-Town. Or Associated...',body:`The supermarket only exists in my dreams now.
+C-Town.
+Or Associated.
+Or Western Beef.
+One of those stores where the freezers
+and the customers were one
+and somebody's auntie was always yelling
+from aisle seven.
+
+In the dream
+I am twelve again
+standing beneath fluorescent lights,
+A smell of fabuloso and rotting meat
+permeating my nostrils,
+holding Goya packets against my chest
+while my mother compares prices
+And makes decisions I never heard outloud.
+
+Every time I turn the corner
+the aisles rearrange themselves.
+The bread becomes shampoo.
+The rice becomes batteries.
+The milk disappears entirely.
+
+A man stocking shelves
+looks exactly like my dead cousin
+but older.
+Nobody mentions this.
+
+Somewhere near frozen foods
+Marc Anthony is playing too loudly.
+The floor is wet.
+There are no warning signs.
+
+I keep trying to reach the checkout line
+but the store keeps expanding.
+A whole extra produce section appears.
+Then another aisle.
+Then another room
+filled with things we used to buy
+before the rent went up.
+
+Outside the windows
+the Bronx keeps changing decades.
+
+1998
+1999
+2000
+
+A luxury gym replaces the botanica
+mid-conversation.
+
+When I finally find my mother
+she is younger than me.
+She touches my face and says:
+
+mija, levantate before they change it again.
+
+I wake with grocery store cold
+still trapped in my hands.`},{tag:'Poetry',title:'voice memo left unsent',excerpt:'hey— / I almost called you tonight / but it felt unfair...',body:`hey—
+
+I almost called you tonight
+but it felt unfair
+to hand somebody this much heaviness
+on a Wednesday.
+
+The laundromat near my apartment
+closed early again.
+The cashier at the gas station
+called me baby
+like he knew me from somewhere.
+
+I think everybody is lonely right now
+in ways we don't have language for yet.
+
+Not lonely like isolation.
+Lonely like:
+having too many tabs open in your brain.
+Lonely like:
+watching people become advertisements for themselves.
+Lonely like:
+missing versions of the city
+that technically still exist.
+
+Earlier today
+I saw a little girl in Target
+singing to herself in Spanish
+while her mother priced detergent
+with a calculator.
+I almost started crying in seasonal decor.
+
+Anyway.
+
+The sky here still looks wrong to me.
+Too open.
+Too much room for your thoughts to spread out.
+Back home the buildings interrupted you.
+The trains interrupted you.
+Somebody fighting outside interrupted you.
+You didn't have to sit inside yourself this long.
+
+Sometimes I think
+that's why people from New York walk fast.
+We are trying to outrun the part of ourselves
+that gets too quiet.
+
+Okay.
+It's late.
+I probably won't send this.
+But it felt good
+to hear somebody breathing
+even if it was only me.`}];
+
+const grid=document.getElementById('poems-grid');
+POEMS.forEach((p,i)=>{
+  const c=document.createElement('div');
+  c.className='poem-card';
+  c.innerHTML=`<div class="washi-top"></div><div class="poem-tag">${p.tag}</div><h3 class="poem-title-c">${p.title}</h3><div class="poem-first">${p.excerpt}</div><button class="poem-read" onclick="openPoem(${i})">Read full poem →</button>`;
+  grid.appendChild(c);
+});
+
+function openPoem(i){
+  const p=POEMS[i];
+  document.getElementById('m-tag').textContent=p.tag;
+  document.getElementById('m-title').textContent=p.title;
+  document.getElementById('m-body').textContent=p.body;
+  document.getElementById('poem-modal').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('poem-modal'))document.getElementById('poem-modal').classList.remove('open');}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const t=document.getElementById('tab-'+id);
+  if(t)t.classList.add('active');
+  window.scrollTo(0,0);
+}
+function switchMode(mode,btn){
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('mode-'+mode).classList.add('active');
+}
+
+// Image upload from device
+function loadUserImages(input){
+  const files=Array.from(input.files);
+  const slots=['col1','col2','col3','col4'];
+  files.slice(0,4).forEach((f,i)=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const img=document.getElementById(slots[i]);
+      const ph=document.getElementById(slots[i]+'-ph');
+      if(img){img.src=e.target.result;img.style.display='block';}
+      if(ph)ph.style.display='none';
+    };
+    reader.readAsDataURL(f);
+  });
+}
+
+const SYS=`You are the voice of Joely Williams's Poetry Letter Club (@poems_neverdie).
+Joely Williams is a poet and multidisciplinary artist based in Columbia, South Carolina, with roots in the Bronx and the Caribbean diaspora. She handwrites poems twice weekly in envelopes made from old book pages, with tea bags and journaling prompts enclosed, pay-what-you-can.
+Her poetic voice: contemporary, observational, philosophically grounded, diaspora-inflected, concrete specificity over abstraction. Strange imagery. Strong craft. Free verse. Never rhyme unless unexpected and earned. Never inspirational or generic.
+Sample lines: "The cold is not the enemy. The cold is the condition." / "The body knows what the mind is still arguing about." / "I still say it in my sleep. The city does not know I have left." / "mija, levantate before they change it again." / "I almost answer honestly."
+Faith: Joely's faith is in Yahuah and Yahusha. Never reference Orisha, Santería, or syncretic spiritual frameworks.
+Club: sign up at forms.gle/rhkk5opNt3QHMEiN9 · Venmo @joelywilliamswrites · PayPal @Williams8119`;
+
+async function callClaude(msgs){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:msgs})});
+  const d=await r.json();
+  return d.content?.[0]?.text||'(something went quiet)';
+}
+async function generatePoem(){
+  const p=document.getElementById('poem-prompt').value.trim();if(!p)return;
+  const btn=document.getElementById('poem-btn');btn.disabled=true;btn.querySelector('span').textContent='writing...';
+  const out=document.getElementById('poem-out');out.classList.remove('vis');
+  try{const poem=await callClaude([{role:'user',content:`Write a poem about or inspired by: ${p}\n\nJust the poem — no title, no preamble.`}]);document.getElementById('poem-txt').textContent=poem;out.classList.add('vis');}
+  catch(e){document.getElementById('poem-txt').textContent='something went quiet. try again.';out.classList.add('vis');}
+  btn.disabled=false;btn.querySelector('span').textContent='Write me a poem';
+}
+async function generatePersonal(){
+  const p=document.getElementById('personal-prompt').value.trim();if(!p)return;
+  const btn=document.getElementById('personal-btn');btn.disabled=true;btn.querySelector('span').textContent='writing for you...';
+  const out=document.getElementById('personal-out');out.classList.remove('vis');
+  try{const poem=await callClaude([{role:'user',content:`Write a deeply personalized poem for someone who shared this: "${p}"\n\nUse specific details. Make it feel written only for them. No title, no preamble.`}]);document.getElementById('personal-txt').textContent=poem;out.classList.add('vis');}
+  catch(e){document.getElementById('personal-txt').textContent='something went quiet. try again.';out.classList.add('vis');}
+  btn.disabled=false;btn.querySelector('span').textContent='Write me something personal';
+}
+const qaH=[];
+async function sendQA(){
+  const inp=document.getElementById('qa-input');const q=inp.value.trim();if(!q)return;
+  const log=document.getElementById('qa-log');
+  const u=document.createElement('div');u.className='cmsg user';u.textContent=q;log.appendChild(u);
+  const load=document.createElement('div');load.className='cmsg bot';load.innerHTML='<div class="ldots"><span></span><span></span><span></span></div>';log.appendChild(load);
+  log.scrollTop=log.scrollHeight;qaH.push({role:'user',content:q});inp.value='';
+  document.getElementById('qa-btn').disabled=true;
+  try{const ans=await callClaude(qaH);qaH.push({role:'assistant',content:ans});load.textContent=ans;}
+  catch(e){load.textContent='something went quiet. try again.';}
+  document.getElementById('qa-btn').disabled=false;log.scrollTop=log.scrollHeight;
+}
+async function generateResponse(){
+  const p=document.getElementById('respond-prompt').value.trim();if(!p)return;
+  const btn=document.getElementById('respond-btn');btn.disabled=true;btn.querySelector('span').textContent='composing...';
+  const out=document.getElementById('respond-out');out.classList.remove('vis');
+  try{const poem=await callClaude([{role:'user',content:`A Poetry Letter Club member received this in the mail: "${p}"\n\nWrite a responsive poem — a reply, a continuation, a letter back. No title, no preamble.`}]);document.getElementById('respond-txt').textContent=poem;out.classList.add('vis');}
+  catch(e){document.getElementById('respond-txt').textContent='something went quiet. try again.';out.classList.add('vis');}
+  btn.disabled=false;btn.querySelector('span').textContent='Write back';
+}
+</script>
 </body>
 </html>
