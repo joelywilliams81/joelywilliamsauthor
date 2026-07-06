@@ -281,8 +281,13 @@ footer a{color:var(--gold);text-decoration:none;}
       <h2 class="sec-title">Poet, Artist,<br><em>Maker of Things</em></h2>
       <div class="ag">
         <div style="position:relative;">
-          <div class="cf"><div class="cf-ph">your photo here</div></div>
-          <div class="washi" style="top:-10px;left:50%;transform:translateX(-50%);position:absolute;"></div>
+          <div class="cf"><img id="about-img" src="" alt="Joely Williams" style="width:100%;height:100%;object-fit:cover;display:none;"><div class="cf-ph" id="about-ph">your photo here</div></div>
+        <div style="margin-top:1.2rem;">
+            <label style="font-family:'Special Elite',cursive;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--moss);cursor:pointer;border:1px solid var(--moss);padding:.5rem 1.1rem;display:inline-block;">
+              Upload your photo
+              <input type="file" accept="image/*" style="display:none;" onchange="loadAboutPhoto(this)">
+            </label>
+          </div>
         </div>
         <div class="at" style="color:var(--beige);">
           <p class="hl">Joely Williams is a poet and multidisciplinary artist based in Columbia, South Carolina, with roots in the Bronx and the Caribbean diaspora.</p>
@@ -446,82 +451,173 @@ function openPDF(type) {
 
 function generateEnvelopePDF() {
   const w = window.open('', '_blank');
-  w.document.write(`<!DOCTYPE html><html><head><title>Mini Envelope Kit — Joely Williams</title>
+  w.document.write(`<!DOCTYPE html><html><head><title>Mini Envelope Templates — Joely Williams</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&display=swap');
-  @page { size: letter; margin: .5in; }
+  @page { size: letter; margin: .45in; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family: 'Special Elite', cursive; background: #fff; color: #1a1410; }
-  .header { text-align:center; border-bottom: 1px solid #839958; padding-bottom: 1rem; margin-bottom: 1.5rem; }
-  .header h1 { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:400; color:#0A3323; margin-bottom:.3rem; }
-  .header p { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:#839958; }
-  .instructions { font-family:'IM Fell English',serif; font-style:italic; font-size:.8rem; color:#5a5040; text-align:center; margin-bottom:1.5rem; line-height:1.7; }
-  .envelope-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
-  .envelope-wrap { display:flex; flex-direction:column; align-items:center; }
-  .envelope-label { font-size:.5rem; letter-spacing:.15em; text-transform:uppercase; color:#839958; margin-bottom:.4rem; }
-  /* envelope shape via CSS */
-  .env-shape {
-    width: 240px; height: 160px; position:relative;
-    border: 1px dashed #c9a84c;
-    background: #faf6e8;
-  }
-  /* flap top */
-  .env-shape::before {
-    content:'';position:absolute;top:0;left:0;right:0;
-    height:0;
-    border-left:120px solid transparent;
-    border-right:120px solid transparent;
-    border-top:70px solid #f0e8d0;
-    border-bottom: none;
-  }
-  /* bottom fold line */
-  .env-shape::after {
-    content:'';position:absolute;bottom:40px;left:0;right:0;
-    border-top:1px dashed #c9a84c;
-  }
-  .env-inner { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.3rem; padding-top:2rem; }
-  .env-inner-stamp { width:32px;height:40px;border:1px solid #c9a84c;position:absolute;top:8px;right:10px;display:flex;align-items:center;justify-content:center;font-size:.5rem;color:#c9a84c; }
-  .env-lines { width:120px; }
-  .env-line { border-bottom:1px solid #ccc; margin-bottom:8px; height:12px; }
-  .fold-guide { font-size:.45rem; color:#aaa; letter-spacing:.1em; text-transform:uppercase; margin-top:.5rem; }
-  .side-tabs { display:flex; gap:1rem; margin-top:.4rem; }
-  .tab { width:25px; height:55px; background:#f0e8d0; border:1px dashed #c9a84c; display:flex; align-items:center; justify-content:center; font-size:.4rem; color:#aaa; writing-mode:vertical-rl; letter-spacing:.08em; }
-  .footer { margin-top:2rem; text-align:center; border-top:1px solid #839958; padding-top:1rem; }
-  .footer p { font-size:.55rem; letter-spacing:.15em; color:#839958; text-transform:uppercase; line-height:2; }
-  .btn-print { margin-top:1.5rem; font-family:'Special Elite',cursive; font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; padding:.7rem 1.6rem; background:#0A3323; color:#faf6e8; border:none; cursor:pointer; }
-  @media print { .btn-print { display:none; } }
+  .header { text-align:center; border-bottom: 1px solid #839958; padding-bottom: .8rem; margin-bottom: .8rem; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400; color:#0A3323; margin-bottom:.2rem; }
+  .header p { font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:#839958; }
+  .instructions { font-family:'IM Fell English',serif; font-style:italic; font-size:.75rem; color:#5a5040; text-align:center; margin-bottom:.9rem; line-height:1.7; border:1px solid #c9a84c; padding:.5rem 1rem; background:#faf6e8; }
+  .instructions strong { font-family:'Special Elite',cursive; font-style:normal; font-size:.6rem; letter-spacing:.15em; }
+
+  /* TWO COLUMN GRID */
+  .env-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2rem; }
+  .env-block { display:flex; flex-direction:column; align-items:center; }
+  .env-name { font-size:.52rem; letter-spacing:.2em; text-transform:uppercase; color:#839958; margin-bottom:.4rem; }
+
+  /* SVG envelope templates */
+  svg.env { overflow:visible; }
+
+  .footer { margin-top:1.2rem; text-align:center; border-top:1px solid #839958; padding-top:.8rem; }
+  .footer p { font-size:.52rem; letter-spacing:.14em; color:#839958; text-transform:uppercase; line-height:2; }
+  .btn-print { margin-top:1rem; font-family:'Special Elite',cursive; font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; padding:.65rem 1.5rem; background:#0A3323; color:#faf6e8; border:none; cursor:pointer; }
+  @media print { .btn-print { display:none; } body { font-size:10px; } }
 </style></head><body>
+
 <div class="header">
-  <h1>Mini Envelope Kit</h1>
-  <p>Poetry Letter Club · @poems_neverdie · joely williams</p>
+  <h1>Mini Envelope Templates</h1>
+  <p>Poetry Letter Club · @poems_neverdie · Joely Williams</p>
 </div>
-<p class="instructions">Print on any paper · Score along dashed lines · Fold side tabs in first · Fold bottom up · Tuck flap to close<br>Perfect for poem cards, handwritten notes, tea bags, and small gifts.</p>
-<div class="envelope-grid">
-  ${[1,2,3,4,5,6].map(n => `
-  <div class="envelope-wrap">
-    <div class="envelope-label">envelope no. ${n}</div>
-    <div class="env-shape">
-      <div class="env-inner">
-        <div class="env-inner-stamp">✦</div>
-        <div class="env-lines">
-          <div class="env-line"></div>
-          <div class="env-line"></div>
-          <div class="env-line"></div>
-        </div>
-      </div>
-    </div>
-    <div class="side-tabs">
-      <div class="tab">fold</div>
-      <div style="width:150px;"></div>
-      <div class="tab">fold</div>
-    </div>
-    <div class="fold-guide">↑ fold bottom up to here ↑</div>
-  </div>`).join('')}
+
+<div class="instructions">
+  <strong>HOW TO USE:</strong> Print on cardstock or sturdy paper · Cut along solid outer lines · Score and fold along dashed lines ·
+  Fold side flaps (A) inward first · Apply glue or tape · Fold bottom (B) up and adhere · Fold top flap (C) down to close
 </div>
+
+<div class="env-grid">
+
+  <!-- ENVELOPE 1: Classic Rectangle -->
+  <div class="env-block">
+    <div class="env-name">No. 1 — Classic</div>
+    <svg class="env" width="230" height="210" viewBox="0 0 230 210">
+      <!-- cut line outer -->
+      <rect x="40" y="55" width="150" height="100" fill="#faf6e8" stroke="#333" stroke-width="1.2"/>
+      <!-- top flap C -->
+      <polygon points="40,55 115,10 190,55" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- bottom flap B -->
+      <polygon points="40,155 190,155 115,200" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- left flap A -->
+      <polygon points="40,55 5,105 40,155" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <!-- right flap A -->
+      <polygon points="190,55 225,105 190,155" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <!-- fold lines dashed -->
+      <line x1="40" y1="55" x2="190" y2="55" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="40" y1="155" x2="190" y2="155" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="40" y1="55" x2="40" y2="155" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="190" y1="55" x2="190" y2="155" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <!-- labels -->
+      <text x="23" y="108" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="195" y="108" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="110" y="185" font-family="Special Elite,cursive" font-size="9" fill="#839958">B</text>
+      <text x="110" y="38" font-family="Special Elite,cursive" font-size="9" fill="#839958">C</text>
+      <!-- stamp box -->
+      <rect x="158" y="62" width="22" height="28" fill="none" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="2,2"/>
+      <text x="162" y="79" font-family="Special Elite,cursive" font-size="7" fill="#c9a84c">✦</text>
+      <!-- address lines -->
+      <line x1="55" y1="95" x2="140" y2="95" stroke="#ccc" stroke-width=".7"/>
+      <line x1="55" y1="107" x2="140" y2="107" stroke="#ccc" stroke-width=".7"/>
+      <line x1="55" y1="119" x2="120" y2="119" stroke="#ccc" stroke-width=".7"/>
+    </svg>
+  </div>
+
+  <!-- ENVELOPE 2: Small Square -->
+  <div class="env-block">
+    <div class="env-name">No. 2 — Small Square</div>
+    <svg class="env" width="230" height="210" viewBox="0 0 230 210">
+      <rect x="55" y="55" width="120" height="100" fill="#faf6e8" stroke="#333" stroke-width="1.2"/>
+      <!-- top flap -->
+      <polygon points="55,55 115,18 175,55" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- bottom flap -->
+      <polygon points="55,155 175,155 115,192" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- left flap -->
+      <polygon points="55,55 18,105 55,155" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <!-- right flap -->
+      <polygon points="175,55 212,105 175,155" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <line x1="55" y1="55" x2="175" y2="55" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="55" y1="155" x2="175" y2="155" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="55" y1="55" x2="55" y2="155" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="175" y1="55" x2="175" y2="155" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <text x="36" y="108" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="180" y="108" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="110" y="180" font-family="Special Elite,cursive" font-size="9" fill="#839958">B</text>
+      <text x="110" y="40" font-family="Special Elite,cursive" font-size="9" fill="#839958">C</text>
+      <rect x="148" y="63" width="18" height="24" fill="none" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="2,2"/>
+      <text x="152" y="78" font-family="Special Elite,cursive" font-size="7" fill="#c9a84c">✦</text>
+      <line x1="68" y1="97" x2="135" y2="97" stroke="#ccc" stroke-width=".7"/>
+      <line x1="68" y1="108" x2="135" y2="108" stroke="#ccc" stroke-width=".7"/>
+      <line x1="68" y1="119" x2="115" y2="119" stroke="#ccc" stroke-width=".7"/>
+    </svg>
+  </div>
+
+  <!-- ENVELOPE 3: Wide/Oblong -->
+  <div class="env-block">
+    <div class="env-name">No. 3 — Wide Oblong</div>
+    <svg class="env" width="260" height="170" viewBox="0 0 260 170">
+      <rect x="20" y="45" width="220" height="80" fill="#faf6e8" stroke="#333" stroke-width="1.2"/>
+      <!-- top flap rounded -->
+      <path d="M20,45 Q130,5 240,45" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- bottom flap -->
+      <polygon points="20,125 240,125 130,160" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- left flap -->
+      <polygon points="20,45 2,85 20,125" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <!-- right flap -->
+      <polygon points="240,45 258,85 240,125" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <line x1="20" y1="45" x2="240" y2="45" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="20" y1="125" x2="240" y2="125" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="20" y1="45" x2="20" y2="125" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="240" y1="45" x2="240" y2="125" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <text x="4" y="90" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="245" y="90" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="125" y="152" font-family="Special Elite,cursive" font-size="9" fill="#839958">B</text>
+      <text x="125" y="28" font-family="Special Elite,cursive" font-size="9" fill="#839958">C</text>
+      <rect x="208" y="52" width="20" height="26" fill="none" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="2,2"/>
+      <text x="213" y="68" font-family="Special Elite,cursive" font-size="7" fill="#c9a84c">✦</text>
+      <line x1="35" y1="82" x2="185" y2="82" stroke="#ccc" stroke-width=".7"/>
+      <line x1="35" y1="93" x2="185" y2="93" stroke="#ccc" stroke-width=".7"/>
+      <line x1="35" y1="104" x2="155" y2="104" stroke="#ccc" stroke-width=".7"/>
+    </svg>
+  </div>
+
+  <!-- ENVELOPE 4: Tiny Note (for tea bags / poems) -->
+  <div class="env-block">
+    <div class="env-name">No. 4 — Tiny Note</div>
+    <svg class="env" width="190" height="210" viewBox="0 0 190 210">
+      <rect x="45" y="50" width="100" height="110" fill="#faf6e8" stroke="#333" stroke-width="1.2"/>
+      <!-- top flap pointed -->
+      <polygon points="45,50 95,10 145,50" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- bottom flap -->
+      <polygon points="45,160 145,160 95,200" fill="#f0e8d0" stroke="#333" stroke-width="1.2"/>
+      <!-- left flap -->
+      <polygon points="45,50 12,105 45,160" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <!-- right flap -->
+      <polygon points="145,50 178,105 145,160" fill="#e8e0c8" stroke="#333" stroke-width="1.2"/>
+      <line x1="45" y1="50" x2="145" y2="50" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="45" y1="160" x2="145" y2="160" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="45" y1="50" x2="45" y2="160" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <line x1="145" y1="50" x2="145" y2="160" stroke="#c9a84c" stroke-width=".8" stroke-dasharray="4,3"/>
+      <text x="28" y="110" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="150" y="110" font-family="Special Elite,cursive" font-size="9" fill="#839958">A</text>
+      <text x="88" y="190" font-family="Special Elite,cursive" font-size="9" fill="#839958">B</text>
+      <text x="88" y="35" font-family="Special Elite,cursive" font-size="9" fill="#839958">C</text>
+      <!-- poem lines inside -->
+      <line x1="58" y1="82" x2="132" y2="82" stroke="#ccc" stroke-width=".7"/>
+      <line x1="58" y1="95" x2="132" y2="95" stroke="#ccc" stroke-width=".7"/>
+      <line x1="58" y1="108" x2="132" y2="108" stroke="#ccc" stroke-width=".7"/>
+      <line x1="58" y1="121" x2="132" y2="121" stroke="#ccc" stroke-width=".7"/>
+      <line x1="58" y1="134" x2="110" y2="134" stroke="#ccc" stroke-width=".7"/>
+      <text x="56" y="62" font-family="IM Fell English,serif" font-size="7" fill="#c9a84c" font-style="italic">poem</text>
+    </svg>
+  </div>
+
+</div>
+
 <div class="footer">
-  <p>poems never die · joelywilliams81.github.io/joelywilliamsauthor</p>
+  <p>poems never die · @poems_neverdie · joelywilliams81.github.io/joelywilliamsauthor</p>
   <p>join the poetry letter club · forms.gle/rhkk5opNt3QHMEiN9</p>
-  <button class="btn-print" onclick="window.print()">Print This Page</button>
+  <button class="btn-print" onclick="window.print()">Print Templates</button>
 </div>
 </body></html>`);
   w.document.close();
@@ -905,6 +1001,18 @@ function switchMode(mode,btn){
   document.querySelectorAll('.mpanel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('mode-'+mode).classList.add('active');
+}
+
+function loadAboutPhoto(input){
+  const f=input.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const img=document.getElementById('about-img');
+    const ph=document.getElementById('about-ph');
+    if(img){img.src=e.target.result;img.style.display='block';}
+    if(ph)ph.style.display='none';
+  };
+  r.readAsDataURL(f);
 }
 
 // Image upload from device
