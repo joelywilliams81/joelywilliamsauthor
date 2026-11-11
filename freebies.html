@@ -391,8 +391,8 @@ footer a{color:var(--gold);text-decoration:none;}
         <div style="background:var(--beige);color:var(--ink);padding:2rem;position:relative;transform:rotate(.4deg);border:1px solid var(--aged);">
           <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:52px;height:16px;background:repeating-linear-gradient(45deg,rgba(211,150,140,.45),rgba(211,150,140,.45) 3px,rgba(211,150,140,.15) 3px,rgba(211,150,140,.15) 6px);"></div>
           <div style="font-family:'Special Elite',cursive;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--midnight);border:1px solid var(--midnight);padding:2px 7px;display:inline-block;margin-bottom:.8rem;">Printable Journal</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:.5rem;">The Slow Letter Journal</h3>
-          <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.88rem;line-height:1.8;color:#3a3028;margin-bottom:1.2rem;">Eight journaling prompts for people who write slowly and feel deeply. Designed to pair with your Poetry Letter Club deliveries.</p>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--ink);margin-bottom:.5rem;">The Letter Journal</h3>
+          <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.88rem;line-height:1.8;color:#3a3028;margin-bottom:1.2rem;">Eight journaling prompts for people who write honestly and feel deeply. Designed to pair with your Poetry Letter Club deliveries.</p>
           <button onclick="openPDF('journal')" style="font-family:'Special Elite',cursive;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:.7rem 1.4rem;background:var(--rosy);color:var(--beige);border:none;cursor:pointer;">Download Free PDF →</button>
         </div>
 
@@ -636,7 +636,7 @@ function generateJournalPDF() {
   ];
 
   const w = window.open('', '_blank');
-  w.document.write(`<!DOCTYPE html><html><head><title>The Slow Letter Journal — Joely Williams</title>
+  w.document.write(`<!DOCTYPE html><html><head><title>The Letter Journal — Joely Williams</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital@0;1&display=swap');
   @page { size: letter; margin: .65in; }
@@ -669,9 +669,9 @@ function generateJournalPDF() {
 <div class="cover">
   <div class="cover-pre">A Free Gift from the Poetry Letter Club</div>
   <div class="cover-moon">○ ◑ ● ◕ ○</div>
-  <h1 class="cover-title">The Slow<br><em>Letter Journal</em></h1>
+  <h1 class="cover-title">The<br><em>Letter Journal</em></h1>
   <div class="cover-rule"></div>
-  <p class="cover-sub">Eight prompts for people who write slowly and feel deeply — designed to pair with your Poetry Letter Club deliveries.</p>
+  <p class="cover-sub">Eight prompts for people who write honestly and feel deeply — designed to pair with your Poetry Letter Club deliveries.</p>
   <div class="cover-attr">
     Joely Williams · Poet & Artist<br>
     @poems_neverdie<br>
@@ -700,7 +700,7 @@ ${prompts.map(p => `
 </div>`).join('')}
 
 <div class="back-cover">
-  <div class="cover-pre">Thank you for writing slowly</div>
+  <div class="cover-pre">Thank you for writing</div>
   <div class="cover-moon">○ ◑ ● ◕ ○</div>
   <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;color:#0A3323;margin:1rem 0;font-style:italic;">poems never die</div>
   <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.95rem;color:#5a6b4f;line-height:1.9;max-width:380px;margin:1rem auto 2rem;">If this journal meant something to you, the Poetry Letter Club delivers handwritten poems to your door twice a week — in envelopes made from old book pages, with a tea bag and a prompt enclosed.</p>
