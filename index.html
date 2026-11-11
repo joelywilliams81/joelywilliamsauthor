@@ -183,6 +183,31 @@ nav{background:var(--dark-green);border-bottom:2px solid var(--gold);position:st
 footer{background:var(--dark-green);border-top:2px solid rgba(201,168,76,.25);padding:2rem 1.5rem;text-align:center;}
 footer p{font-family:'Special Elite',cursive;font-size:.6rem;letter-spacing:.18em;color:rgba(245,240,216,.3);text-transform:uppercase;line-height:2.2;}
 footer a{color:var(--gold);text-decoration:none;}
+
+/* BOOKS */
+.bk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.5rem;align-items:start;}
+.bk-card{background:var(--beige);color:var(--ink);padding:2rem 1.8rem 1.8rem;position:relative;border:1px solid var(--aged);transform:rotate(var(--r,0deg));}
+.bk-card:nth-child(1){--r:-.5deg;} .bk-card:nth-child(2){--r:.4deg;} .bk-card:nth-child(3){--r:-.3deg;}
+.bk-card .washi-top{position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-1deg);width:52px;height:16px;background:repeating-linear-gradient(45deg,rgba(131,153,88,.45),rgba(131,153,88,.45) 3px,rgba(131,153,88,.15) 3px,rgba(131,153,88,.15) 6px);}
+.bk-cover{width:100%;aspect-ratio:3/4;margin-bottom:1.3rem;background:var(--dark-green);border:1px solid var(--aged);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.bk-cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.bk-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;line-height:1.25;color:var(--ink);margin:.2rem 0 .3rem;}
+.bk-sub{font-family:'IM Fell English',serif;font-style:italic;font-size:.95rem;color:var(--dark-gold);margin-bottom:.9rem;}
+.bk-meta{font-family:'Special Elite',cursive;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--midnight);margin-bottom:1rem;line-height:1.9;}
+.bk-desc p{font-size:.88rem;line-height:1.85;margin-bottom:.8rem;color:#3a3028;}
+.bk-price{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink);margin:1rem 0 .3rem;border-top:1px solid var(--aged);padding-top:.9rem;}
+.bk-price span{font-family:'Special Elite',cursive;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--moss);margin-left:.5rem;}
+.bk-card details{margin-top:.8rem;border-top:1px dashed var(--moss);padding-top:.7rem;}
+.bk-card summary{font-family:'Special Elite',cursive;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--midnight);cursor:pointer;}
+.bk-card details ul{margin:.7rem 0 0 1.1rem;font-size:.84rem;line-height:1.8;color:#3a3028;}
+.bk-order{max-width:760px;margin:0 auto;background:rgba(245,240,216,.05);border:1px solid rgba(131,153,88,.3);padding:2.4rem 2rem;}
+.bk-steps{list-style:none;margin:1.4rem 0 1.8rem;counter-reset:s;}
+.bk-steps li{counter-increment:s;position:relative;padding:.6rem 0 .6rem 2.6rem;font-size:.92rem;line-height:1.8;color:var(--beige);border-bottom:1px dashed rgba(131,153,88,.25);}
+.bk-steps li::before{content:counter(s);position:absolute;left:0;top:.55rem;width:1.8rem;height:1.8rem;border:1px solid var(--gold);color:var(--gold);font-family:'Special Elite',cursive;font-size:.7rem;display:flex;align-items:center;justify-content:center;}
+.bk-prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.2rem 0 1.6rem;text-align:center;}
+.bk-prices div{background:var(--beige);color:var(--ink);padding:1rem .6rem;}
+.bk-prices .pl{font-family:'Special Elite',cursive;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--moss);line-height:1.6;}
+.bk-prices .pv{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--ink);}
 </style>
 </head>
 <body>
@@ -194,6 +219,7 @@ footer a{color:var(--gold);text-decoration:none;}
       <li><a onclick="showPage('home')" id="tab-home" class="active">Home</a></li>
       <li><a onclick="showPage('about')" id="tab-about">About</a></li>
       <li><a onclick="showPage('poems')" id="tab-poems">Poems</a></li>
+      <li><a onclick="showPage('books')" id="tab-books">Books</a></li>
       <li><a onclick="showPage('gallery')" id="tab-gallery">Collages</a></li>
       <li><a onclick="showPage('plc')" id="tab-plc">Letter Club</a></li>
       <li><a onclick="showPage('freebies')" id="tab-freebies">Freebies</a></li>
@@ -332,6 +358,101 @@ footer a{color:var(--gold);text-decoration:none;}
           <input type="file" accept="image/*" multiple style="display:none;" onchange="loadUserImages(this)">
         </label>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKS -->
+<div id="page-books" class="page">
+  <div style="background:var(--dark-green);padding:4rem 0 0;">
+    <div class="sec">
+      <div class="sec-lbl">Books</div>
+      <h2 class="sec-title">Books by <em>Joely Williams</em></h2>
+      <span class="ornament">· · ✦ · ·</span>
+      <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:1rem;color:var(--moss);line-height:1.95;max-width:600px;margin-bottom:3rem;">A poetry collection and a two-part guided journal. Every copy ordered here is signed and mailed by hand, straight from my desk.</p>
+
+      <div class="bk-grid">
+
+        <!-- SPIDER -->
+        <div class="bk-card">
+          <div class="washi-top"></div>
+          <div class="bk-cover" id="cover-spider"></div>
+          <div class="poem-tag">Poetry collection</div>
+          <h3 class="bk-title">Even the Spider Keeps Record</h3>
+          <div class="bk-sub">Poems - revised edition</div>
+          <div class="bk-meta">31 poems in three sections · 50 pages · 5.5 x 8.5 in paperback</div>
+          <div class="bk-desc">
+            <p>Even the Spider Keeps Record is a collection of thirty-one poems about the keeping - the margin notes, the saved envelopes, the names repeated until they held. Joely Williams writes grief that does not ask permission and joy that arrives anyway: a childhood corner, a storm survived, a headline that would not leave, the small wreckage of ordinary days.</p>
+            <p>These are poems for anyone who has ever kept a record nobody asked them to keep. For the ones rebuilding in the same ruined corner, every time the web gets swept down.</p>
+            <p>Thirty-one poems. One web. Nothing lost on purpose.</p>
+          </div>
+          <div class="bk-price">$20<span>signed, shipping included</span></div>
+          <details><summary>The three sections</summary><ul><li>Silk - 17 poems</li><li>Instar - 8 poems</li><li>Web - 6 poems</li></ul></details>
+        </div>
+
+        <!-- BOOK ONE -->
+        <div class="bk-card">
+          <div class="washi-top" style="background:repeating-linear-gradient(45deg,rgba(211,150,140,.45),rgba(211,150,140,.45) 3px,rgba(211,150,140,.15) 3px,rgba(211,150,140,.15) 6px);"></div>
+          <div class="bk-cover" id="cover-one"></div>
+          <div class="poem-tag">Guided journal · book one</div>
+          <h3 class="bk-title">Put the Phone Down, We Have Work to Do</h3>
+          <div class="bk-sub">Book One: A Journal for Healing What People Broke</div>
+          <div class="bk-meta">14 chapters · 324 pages · 7.57 x 9.94 in paperback</div>
+          <div class="bk-desc">
+            <p>Put the phone down. That is the whole first instruction, and most days it is the hardest one in this book.</p>
+            <p>Book One is a journal for healing what people broke. Fourteen chapters, one for each kind of wound a person can press into you: abuse, neglect, childhood abuse and neglect, witnessing violence, bullying, betrayal, separation, divorce, breakup, familial abandonment, social isolation, cult-related trauma, grief and loss, and the incarceration of a loved one.</p>
+            <p>Every chapter opens two ways in. Moments to Ponder asks you to sit inside a question until it tells you something true. Acts of Courage asks you to move - write it, draw it, mail it, burn it, say it out loud to a room that is empty except for you.</p>
+            <p>Skip the chapters that do not belong to your body. Linger in the ones that do. This journal is a tool for personal reflection, not a substitute for professional mental health care. Something greater than you already knows every page before you write on it, and is in no hurry for you to finish.</p>
+            <p>Fourteen chapters. Two doors in each. No rush.</p>
+          </div>
+          <div class="bk-price">$25<span>signed, shipping included</span></div>
+          <details><summary>The fourteen chapters</summary><ul><li>Abuse</li><li>Neglect</li><li>Childhood Abuse or Neglect</li><li>Witnessing Violence</li><li>Bullying</li><li>Betrayal</li><li>Separation</li><li>Divorce</li><li>Breakup</li><li>Familial Abandonment</li><li>Social Isolation</li><li>Cult-Related Trauma</li><li>Grief and Loss</li><li>Incarceration of a Loved One</li></ul></details>
+        </div>
+
+        <!-- BOOK TWO -->
+        <div class="bk-card">
+          <div class="washi-top"></div>
+          <div class="bk-cover" id="cover-two"></div>
+          <div class="poem-tag">Guided journal · book two</div>
+          <h3 class="bk-title">Put the Phone Down, We Have Work to Do</h3>
+          <div class="bk-sub">Book Two: A Journal for Healing What Circumstance Broke</div>
+          <div class="bk-meta">15 chapters · 351 pages · 7.57 x 9.94 in paperback</div>
+          <div class="bk-desc">
+            <p>Put the phone down. That instruction still comes first, and it still costs the most.</p>
+            <p>Book Two is a journal for healing what circumstance broke - the injuries no single hand delivered. The collision on the interstate. The diagnosis read aloud in a beige room. The eviction notice taped to the door. The border crossed with one suitcase. The paycheck that stopped. Illness. War. Debt. Systems that measured you and wrote the number down.</p>
+            <p>Fifteen chapters, each opening two ways in. Moments to Ponder asks you to sit inside a question until it tells you something true. Acts of Courage asks you to move - write it, map it, mail it, rebuild one small thing with your own two hands.</p>
+            <p>Begin where your body points. Leave the chapters that belong to someone else. This journal is a tool for personal reflection, not a substitute for professional mental health care. Something greater than you already knows every page before you write on it, and is in no hurry for you to finish.</p>
+            <p>Fifteen chapters. Two doors in each. No rush.</p>
+          </div>
+          <div class="bk-price">$28<span>signed, shipping included</span></div>
+          <details><summary>The fifteen chapters</summary><ul><li>Accidents and Disasters</li><li>Medical Procedures</li><li>Illness</li><li>War and Conflict</li><li>Natural Disasters</li><li>Addiction and Recovery</li><li>Discrimination</li><li>Poverty</li><li>Homelessness</li><li>Immigration</li><li>Incarceration</li><li>Financial Strain</li><li>Job Loss</li><li>Systemic Oppression</li><li>Technological Advancements</li></ul></details>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--midnight);border-top:3px solid var(--rosy);padding:4.5rem 1.5rem;">
+    <div class="bk-order">
+      <div class="sec-lbl">Order direct</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:400;color:var(--beige);line-height:1.25;">Signed by me. <em style="color:var(--rosy);">Mailed by hand.</em></h2>
+      <div class="bk-prices">
+        <div><div class="pl">Even the Spider Keeps Record</div><div class="pv">$20</div></div>
+        <div><div class="pl">Put the Phone Down<br>Book One</div><div class="pv">$25</div></div>
+        <div><div class="pl">Put the Phone Down<br>Book Two</div><div class="pv">$28</div></div>
+        <div><div class="pl">All three books</div><div class="pv">$73</div></div>
+      </div>
+      <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.92rem;color:var(--moss);margin-bottom:.4rem;">Prices are flat and shipping is included.</p>
+      <ol class="bk-steps">
+        <li>Fill out the order form with your name, address, the book you want, and the name to sign it to.</li>
+        <li>Pay through PayPal (@Williams8119) or Venmo, and put your name on the payment so I can match it to your form.</li>
+        <li>Your signed copy ships by Media Mail once my author copies reach me. I email your tracking number the day it goes in the mail.</li>
+      </ol>
+      <div style="display:flex;flex-wrap:wrap;gap:.8rem;">
+        <a href="https://docs.google.com/forms/d/1Ooe7x9WqRpUzRYkHuXuQsJ6-Ww6_TGrWllRUeqG0Hio/viewform" target="_blank" rel="noopener" class="plc-jb">Order a signed copy</a>
+        <a href="https://venmo.com/joelywilliamswrites" target="_blank" rel="noopener" class="btn btn-p">Pay via Venmo</a>
+      </div>
+      <p style="font-family:'Special Elite',cursive;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--moss);margin-top:1.6rem;line-height:2;">Direct orders open through December 31, 2026</p>
     </div>
   </div>
 </div>
@@ -987,6 +1108,24 @@ function openPoem(i){
   document.getElementById('poem-modal').classList.add('open');
 }
 function closeModal(e){if(e.target===document.getElementById('poem-modal'))document.getElementById('poem-modal').classList.remove('open');}
+
+
+// BOOK COVERS - drop files in Assets/covers/ named spider.jpg, book-one.jpg, book-two.jpg
+(function(){
+  var map={'cover-spider':['spider.jpg','Even the Spider Keeps Record','Poems'],
+           'cover-one':['book-one.jpg','Put the Phone Down','Book One'],
+           'cover-two':['book-two.jpg','Put the Phone Down','Book Two']};
+  Object.keys(map).forEach(function(id){
+    var el=document.getElementById(id); if(!el)return;
+    var m=map[id], img=new Image();
+    img.alt='Cover of '+m[1]+' - '+m[2];
+    img.onload=function(){el.appendChild(img);};
+    img.onerror=function(){
+      el.innerHTML='<div style="text-align:center;padding:1.5rem;color:rgba(245,240,216,.55);font-family:\'Playfair Display\',serif;font-style:italic;line-height:1.5;">'+m[1]+'<br><span style="font-family:\'Special Elite\',cursive;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">'+m[2]+'</span></div>';
+    };
+    img.src='Assets/covers/'+m[0];
+  });
+})();
 
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
