@@ -39,7 +39,7 @@
     var id=el.getAttribute('data-cover');
     el.innerHTML='<div class="ph"><b>'+el.getAttribute('data-t1')+'</b><span>'+el.getAttribute('data-t2')+'</span></div>';
     var img=new Image(); img.alt='Cover of '+el.getAttribute('data-t1')+', '+el.getAttribute('data-t2');
-    img.onload=function(){el.innerHTML='';el.appendChild(img);};
+    img.onload=function(){el.innerHTML='';el.classList.add('has-img');el.appendChild(img);};
     img.src='Assets/covers/'+files[id];
   });
 })();</script>
