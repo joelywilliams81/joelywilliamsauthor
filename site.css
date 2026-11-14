@@ -137,6 +137,15 @@ dialog h3{font-size:clamp(2rem,5vw,2.7rem);margin:.5rem 0 1.4rem}
 .poem-body{white-space:pre-wrap;font-size:1.15rem;line-height:1.95}
 .close{position:sticky;top:0;float:right;font:400 .85rem var(--body);letter-spacing:.06em;background:var(--blush);border:0;color:var(--ink);padding:.55rem 1.1rem;border-radius:999px;cursor:pointer}
 
+/* photos */
+.ph{margin:0;border-radius:26px;overflow:hidden;background:var(--paper-2);box-shadow:0 20px 40px rgba(122,84,72,.12)}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.ph.arch{border-radius:200px 200px 26px 26px}
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.8rem,2vw,1.5rem)}
+.strip .ph{aspect-ratio:4/5}
+.strip .ph:nth-child(2){transform:translateY(1.4rem)}
+.portrait{max-width:420px;margin-bottom:1.5rem}
+@media(max-width:760px){.strip{grid-template-columns:repeat(2,minmax(0,1fr))}.strip .ph:nth-child(3){display:none}.strip .ph:nth-child(2){transform:none}}
 /* about, freebies, contact */
 .about p{color:var(--ink-soft);margin-bottom:1.1rem;max-width:36em}
 .about p strong{font-weight:500;color:var(--ink)}
